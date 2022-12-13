@@ -14,8 +14,8 @@ const NavBar = ({ routes }) => {
 
   return (
     <AppBar color='default' position='sticky'>
-      <Grid m={1} display='flex' justifyContent='space-between' alignItems='center'>
-        <Grid display='flex' justifyContent='space-between' alignItems='center'>
+      <Grid m={1} display='flex' justifyContent='space-between'>
+        <Grid display='flex' alignItems='center'>
           <Avatar
             style={{ width: '3em', height: '3em' }}
             alt={user.username()}
