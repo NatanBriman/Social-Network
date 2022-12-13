@@ -1,14 +1,16 @@
 import { AppBar, Avatar, Box, Button, Grid, IconButton, Typography } from '@mui/material';
 import { useContext } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { userSelector } from '../../Redux/Features/UserSlice';
 import { ColorModeContext } from '../../Theme/ThemeContext';
 
 const NavBar = ({ routes }) => {
   const user = useSelector(userSelector);
   const { toggleColorMode, currentThemeIcon } = useContext(ColorModeContext);
-  // TODO: Make current route bolder
+
+  const currentRoute = useLocation().pathname;
+  const isCurrentRoute = (route) => route === currentRoute;
 
   return (
     <AppBar color='default' position='sticky'>
@@ -37,7 +39,13 @@ const NavBar = ({ routes }) => {
           {routes.map((route) => (
             <Box key={route.path} ml={1}>
               <Button>
-                <Link to={route.path} style={{ fontSize: '1.3rem' }}>
+                <Link
+                  to={route.path}
+                  style={{
+                    fontSize: '1.3rem',
+                    textDecoration: isCurrentRoute(route.path) && 'underline',
+                  }}
+                >
                   {route.text}
                 </Link>
               </Button>
