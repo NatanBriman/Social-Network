@@ -1,42 +1,63 @@
 import uuid from 'react-uuid';
 
 export default class User {
-  constructor(username, password, image) {
+  #id;
+  #username;
+  #password;
+  #image;
+  #friends;
+  #likedPosts;
+  #joinedDate;
+
+  constructor(username, password, image, friends = [], likedPosts = []) {
     this.#id = uuid();
     this.#username = username;
     this.#password = password;
     this.#image = image;
-    this.#friends = [];
-    this.#likedPosts = [];
+    this.#friends = friends;
+    this.#likedPosts = likedPosts;
     this.#joinedDate = new Date();
   }
 
-  get id() {
+  id() {
     return this.#id;
   }
-  get username() {
+  username() {
     return this.#username;
   }
-  get password() {
+  password() {
     return this.#password;
   }
-  get image() {
+  image() {
     return this.#image;
   }
-  get friends() {
+  friends() {
     return this.#friends;
   }
-  get likedPosts() {
+  likedPosts() {
     return this.#likedPosts;
   }
-  get joinedDate() {
+  joinedDate() {
     return this.#joinedDate;
   }
 
   addLikedPost(post) {
     this.#likedPosts.push(post);
   }
+  removeLikedPost(postToRemove) {
+    const updatedLikedPosts = this.#likedPosts.filter(
+      (likedPost) => likedPost.id !== postToRemove.id
+    );
+
+    this.#likedPosts = updatedLikedPosts;
+  }
+
   addFriend(friend) {
     this.#friends.push(friend);
+  }
+  removeFriend(friendToRemove) {
+    const updatedFriends = this.#friends.filter((friend) => friend.id !== friendToRemove.id);
+
+    this.#friends = updatedFriends;
   }
 }

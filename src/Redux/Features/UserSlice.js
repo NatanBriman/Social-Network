@@ -19,30 +19,32 @@ const userSlice = createSlice({
       state.user = user;
     },
     logout: (state) => {
-      state.user = {};
+      state.user = undefined;
     },
-    addFavoriteProduct: (state, action) => {
-      const product = action.payload;
+    addLikedPost: (state, action) => {
+      const likedPostToAdd = action.payload;
 
-      state.user.favoriteProducts.push(product);
+      state.user.addLikedPost(likedPostToAdd);
     },
-    removeFavoriteProduct: (state, action) => {
-      const product = action.payload;
+    removeLikedPost: (state, action) => {
+      const likedPostToRemove = action.payload;
 
-      const updatedFavoriteProducts = state.user.favoriteProducts.filter(
-        (favoriteProduct) => favoriteProduct._id !== product._id
-      );
+      state.user.removeLikedPost(likedPostToRemove);
+    },
+    addFriend: (state, action) => {
+      const friendToAdd = action.payload;
 
-      const updatedUser = {
-        ...state.user,
-        favoriteProducts: updatedFavoriteProducts,
-      };
+      state.user.addFriend(friendToAdd);
+    },
+    removeFriend: (state, action) => {
+      const friendToRemove = action.payload;
 
-      state.user = updatedUser;
+      state.user.removeFriend(friendToRemove);
     },
   },
 });
 
 export const userActions = userSlice.actions;
+export const userSelector = (state) => state.user.user;
 
 export default userSlice;
