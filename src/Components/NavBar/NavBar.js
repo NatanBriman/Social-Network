@@ -1,11 +1,15 @@
-import { AppBar, Avatar, Box, Button, Grid, Typography } from '@mui/material';
+import { AppBar, Avatar, Box, Button, Grid, IconButton, Typography } from '@mui/material';
+import { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { userSelector } from '../../Redux/Features/UserSlice';
+import { ColorModeContext } from '../../Theme/ThemeContext';
 
 const NavBar = ({ routes }) => {
   const user = useSelector(userSelector);
-  // TODO: Make the current route bolder
+  const { toggleColorMode, currentThemeIcon } = useContext(ColorModeContext);
+  // TODO: Make current route bolder
+
   return (
     <AppBar color='default' position='sticky'>
       <Grid m={1} display='flex' justifyContent='space-between' alignItems='center'>
@@ -22,6 +26,10 @@ const NavBar = ({ routes }) => {
             <Typography variant='h5'>
               <strong>{user.username()}</strong>
             </Typography>
+          </Box>
+
+          <Box ml={1}>
+            <IconButton onClick={toggleColorMode}>{currentThemeIcon()}</IconButton>
           </Box>
         </Grid>
 
