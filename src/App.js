@@ -1,10 +1,14 @@
-import { useSelector } from 'react-redux';
-import { userSelector } from './Redux/Features/UserSlice';
+import NavBar from './Components/NavBar/NavBar';
+import RouterView from './Router/Router';
+import { ROUTES } from './Utils/Constants';
 
 const App = () => {
-  const user = useSelector(userSelector);
-
-  return <div className='App'>{user.username()}</div>;
+  return (
+    <>
+      <NavBar routes={ROUTES} />
+      <RouterView />
+    </>
+  );
 };
 
 export default App;

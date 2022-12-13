@@ -4,7 +4,7 @@ import User from '../../Models/User';
 const INITIAL_USER = new User(
   'Natan Briman',
   'PASSWORD',
-  'https://www.google.com/url?sa=i&url=https%3A%2F%2Ftwitter.com%2Fnatanbriman&psig=AOvVaw3MRz_yiGCcc6AOCHcmLMdS&ust=1671007573096000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCLjz47ia9vsCFQAAAAAdAAAAABAE'
+  'https://media-exp1.licdn.com/dms/image/D4E35AQGK4ozVskWbmQ/profile-framedphoto-shrink_400_400/0/1634383529380?e=1671530400&v=beta&t=Njg5YE0g3yo3455OUIiyQ6-akjBHjPN8VPWr0g5v5go'
 );
 
 const userSlice = createSlice({
