@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import User from '../../Models/User';
+import User from '../../Models/User/User';
 
 const INITIAL_USER = new User(
   'Natan Briman',
