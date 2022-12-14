@@ -7,18 +7,11 @@ import {
   CardContent,
   CardHeader,
   CardMedia,
-  Link,
   Typography,
 } from '@mui/material';
-import { useState } from 'react';
+import ReadMore from '../../../Components/ReadMore';
 
 const PostCard = ({ post }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const toggleIsExpanded = () => setIsExpanded((isExpanded) => !isExpanded);
-
-  const descriptionThatFits = post.description().slice(0, 169);
-
   return (
     <Card className='post rounded'>
       <CardHeader
@@ -27,15 +20,9 @@ const PostCard = ({ post }) => {
       />
 
       <CardContent style={{ paddingTop: 0 }}>
-        <Box>
-          <Typography variant='body2' color='text.secondary'>
-            {!isExpanded ? descriptionThatFits : post.description()}
-
-            <Link style={{ cursor: 'pointer' }} onClick={toggleIsExpanded}>
-              {!isExpanded ? '...read more' : ' show less'}
-            </Link>
-          </Typography>
-        </Box>
+        <Typography variant='body2' color='text.secondary'>
+          <ReadMore text={post.description()} maxWidth={169} />
+        </Typography>
 
         <Box mt={1}>
           <CardMedia
