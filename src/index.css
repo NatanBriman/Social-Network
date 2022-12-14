@@ -15,8 +15,8 @@ a {
   text-transform: none;
 }
 
-button {
-  padding: 0;
+.MuiBox-root button {
+  text-transform: none;
 }
 
 #root {

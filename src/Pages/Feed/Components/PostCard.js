@@ -1,11 +1,13 @@
 import {
   Avatar,
+  Box,
   Button,
   Card,
   CardActions,
   CardContent,
   CardHeader,
   CardMedia,
+  Divider,
   Typography,
 } from '@mui/material';
 import PopUpDialog from '../../../Components/PopUpDialog';
@@ -37,9 +39,14 @@ const PostCard = ({ post }) => {
         </PopUpDialog>
       </CardContent>
 
+      <Divider />
+
       <CardActions>
-        <Button>Share</Button>
-        <Button>Learn More</Button>
+        <Box width='100%' display='flex' justifyContent='flex-end' gap={1}>
+          <Button variant='outlined'>Like</Button>
+          <Button variant='outlined'>Share</Button>
+          <Button variant='outlined'>Comment</Button>
+        </Box>
       </CardActions>
     </Card>
   );
