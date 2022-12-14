@@ -1,6 +1,6 @@
 import { BsCartFill } from 'react-icons/bs';
 import { IoStorefrontSharp } from 'react-icons/io5';
-import FeedPage from '../Pages/Manager/FeedPage';
+import FeedPage from '../Pages/Feed/FeedPage';
 import FriendsPage from '../Pages/Friends/FriendsPage';
 
 export const FEED_ROUTE = '/feed';
