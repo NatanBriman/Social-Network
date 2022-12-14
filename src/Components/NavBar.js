@@ -2,8 +2,8 @@ import { AppBar, Avatar, Box, Button, Grid, IconButton, Typography } from '@mui/
 import { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
-import { userSelector } from '../../Redux/Features/UserSlice';
-import { ColorModeContext } from '../../Theme/ThemeContext';
+import { userSelector } from '../Redux/Features/UserSlice';
+import { ColorModeContext } from '../Theme/ThemeContext';
 
 const NavBar = ({ routes }) => {
   const user = useSelector(userSelector);
@@ -35,18 +35,18 @@ const NavBar = ({ routes }) => {
           </Box>
         </Grid>
 
-        <Grid display='flex'>
-          {routes.map((route) => (
-            <Box key={route.path} ml={1}>
+        <Grid display='flex' justifyContent='center' alignItems='center'>
+          {routes.map(({ path, text }) => (
+            <Box key={path} ml={1}>
               <Button>
                 <Link
-                  to={route.path}
+                  to={path}
                   style={{
-                    fontSize: '1.3rem',
-                    textDecoration: isCurrentRoute(route.path) && 'underline',
+                    fontSize: '1.5rem',
+                    textDecoration: isCurrentRoute(path) && 'underline',
                   }}
                 >
-                  {route.text}
+                  {text}
                 </Link>
               </Button>
             </Box>

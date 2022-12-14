@@ -1,4 +1,4 @@
-import NavBar from './Components/NavBar/NavBar';
+import NavBar from './Components/NavBar';
 import RouterView from './Router/Router';
 import { ROUTES } from './Utils/Constants';
 
