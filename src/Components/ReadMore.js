@@ -5,15 +5,16 @@ const ReadMore = ({ text, maxWidth }) => {
   const [isReadMore, setIsReadMore] = useState(false);
   const toggleIsExpanded = () => setIsReadMore((isExpanded) => !isExpanded);
 
-  const textThatFits = text.slice(0, maxWidth);
-  const isShowReadMore = text.length > maxWidth;
+  const textToDisplay = !isReadMore ? text.slice(0, maxWidth) : text;
+  const isShowReadMoreLink = text.length > maxWidth;
+  const linkText = !isReadMore ? '...read more' : 'show less';
 
   return (
     <>
-      {!isReadMore ? textThatFits : text}{' '}
-      {isShowReadMore && (
+      {textToDisplay}{' '}
+      {isShowReadMoreLink && (
         <Link style={{ cursor: 'pointer' }} onClick={toggleIsExpanded}>
-          {!isReadMore ? '...read more' : 'show less'}
+          {linkText}
         </Link>
       )}
     </>

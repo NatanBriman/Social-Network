@@ -28,6 +28,20 @@ button {
   box-sizing: border-box;
 }
 
+.rounded {
+  border-radius: 12px;
+}
+
 .MuiBox-root .rounded {
   border-radius: 12px;
+}
+
+.clickable {
+  cursor: pointer;
+  box-shadow: var(--normal-shadow);
+}
+
+.clickable:hover {
+  box-shadow: var(--hover-shadow);
+  transform: scale(1.01);
 }

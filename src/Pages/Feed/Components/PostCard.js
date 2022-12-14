@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Box,
   Button,
   Card,
   CardActions,
@@ -9,6 +8,7 @@ import {
   CardMedia,
   Typography,
 } from '@mui/material';
+import PopUpDialog from '../../../Components/PopUpDialog';
 import ReadMore from '../../../Components/ReadMore';
 
 const PostCard = ({ post }) => {
@@ -24,15 +24,17 @@ const PostCard = ({ post }) => {
           <ReadMore text={post.description()} maxWidth={169} />
         </Typography>
 
-        <Box mt={1}>
+        <PopUpDialog
+          title='Post Image'
+          dialogContent={<img className='shadow rounded' src={post.image()} alt='Post Image' />}
+        >
           <CardMedia
-            className='shadow rounded'
+            className='clickable rounded'
             image={post.image()}
             alt='Post Image'
-            component='img'
-            style={{ height: '10em' }}
+            style={{ height: '10em', marginTop: '1em' }}
           />
-        </Box>
+        </PopUpDialog>
       </CardContent>
 
       <CardActions>
