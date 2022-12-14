@@ -15,14 +15,16 @@ import ReadMore from '../../../Components/ReadMore';
 
 const PostCard = ({ post }) => {
   return (
-    <Card className='post rounded'>
+    <Card className='shadow rounded'>
       <CardHeader
-        avatar={<Avatar src={post.author().image()} alt={post.author().username()} />}
+        avatar={
+          <Avatar className='shadow' src={post.author().image()} alt={post.author().username()} />
+        }
         title={<Typography variant='h5'>{post.author().username()}</Typography>}
       />
 
       <CardContent style={{ paddingTop: 0 }}>
-        <Typography variant='body2' color='text.secondary'>
+        <Typography className='shadow rounded' p={1} variant='body2' color='text.secondary'>
           <ReadMore text={post.description()} maxWidth={169} />
         </Typography>
 

@@ -17,6 +17,7 @@ const NavBar = ({ routes }) => {
       <Grid m={1} display='flex' justifyContent='space-between'>
         <Grid display='flex' alignItems='center'>
           <Avatar
+            className='shadow'
             style={{ width: '3em', height: '3em' }}
             alt={user.username()}
             src={user.image()}
