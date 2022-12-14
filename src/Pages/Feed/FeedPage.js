@@ -3,8 +3,8 @@ import PostsFeed from './Components/PostsFeed';
 
 const FeedPage = () => {
   return (
-    <Grid mt={1} display='flex' alignItems='center' justifyContent='center'>
-      <PostsFeed />
+    <Grid height='100%' my={2} display='flex' alignItems='center' justifyContent='center'>
+      <PostsFeed style={{ width: '40%' }} />
     </Grid>
   );
 };
