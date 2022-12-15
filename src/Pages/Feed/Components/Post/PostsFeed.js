@@ -1,4 +1,4 @@
-import { Box, Paper } from '@mui/material';
+import Feed from '../../../../Components/Feed';
 import Post from '../../../../Models/Post/Post';
 import UserDTO from '../../../../Models/User/UserDTO';
 import PostCard from './PostCard';
@@ -78,23 +78,33 @@ const PostsFeed = ({ style }) => {
   ];
 
   return (
-    <Paper elevation={24} className='shadow rounded' style={style}>
-      <Box
-        p={2}
-        pb={0}
-        display='flex'
-        flexDirection='column'
-        alignItems='center'
-        className='scroll'
-        style={{ maxHeight: '80vh', minHeight: '40vh' }}
-      >
-        {POSTS.map((post) => (
-          <Box key={post.id()} mb={3} className='max-width'>
-            <PostCard post={post} />
-          </Box>
-        ))}
-      </Box>
-    </Paper>
+    <>
+      <Feed
+        paperStyle={style}
+        feedStyle={{ maxHeight: '70vh', minHeight: '40vh' }}
+        title='Feed'
+        items={POSTS}
+        component={(post) => <PostCard post={post} />}
+      />
+
+      {/* <Paper elevation={24} className='shadow rounded' style={style}>
+        <Box
+          p={2}
+          pb={0}
+          display='flex'
+          flexDirection='column'
+          alignItems='center'
+          className='scroll'
+          style={{ maxHeight: '80vh', minHeight: '40vh' }}
+        >
+          {POSTS.map((post) => (
+            <Box key={post.id()} mb={3} className='max-width'>
+              <PostCard post={post} />
+            </Box>
+          ))}
+        </Box>
+      </Paper> */}
+    </>
   );
 };
 
