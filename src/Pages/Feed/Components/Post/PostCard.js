@@ -17,24 +17,22 @@ const PostCard = ({ post }) => {
   return (
     <Card className='shadow rounded'>
       <CardHeader
-        avatar={
-          <Avatar className='shadow' src={post.author().image()} alt={post.author().username()} />
-        }
-        title={<Typography variant='h5'>{post.author().username()}</Typography>}
+        avatar={<Avatar className='shadow' src={post.author.image} alt={post.author.username} />}
+        title={<Typography variant='h5'>{post.author.username}</Typography>}
       />
 
       <CardContent style={{ paddingTop: 0 }}>
         <Typography className='shadow rounded' p={1} variant='body2' color='text.secondary'>
-          <ReadMore text={post.description()} maxWidth={169} />
+          <ReadMore text={post.description} maxWidth={169} />
         </Typography>
 
         <PopUpDialog
           title='Post Image'
-          dialogContent={<img className='shadow rounded' src={post.image()} alt='Post Image' />}
+          dialogContent={<img className='shadow rounded' src={post.image} alt='Post Image' />}
         >
           <CardMedia
             className='clickable rounded'
-            image={post.image()}
+            image={post.image}
             alt='Post Image'
             style={{ height: '10em', marginTop: '1em' }}
           />

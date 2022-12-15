@@ -9,17 +9,17 @@ const UserCard = ({ user, children }) => {
           className='max-width'
           avatar={
             <PopUpDialog
-              title={user.username()}
+              title={user.username}
               dialogContent={
                 <img
                   style={{ maxHeight: '50vh', maxWidth: '80wh' }}
                   className='shadow rounded'
-                  src={user.image()}
-                  alt={user.username()}
+                  src={user.image}
+                  alt={user.username}
                 />
               }
             >
-              <Avatar className='shadow clickable' src={user.image()} alt={user.username()} />
+              <Avatar className='shadow clickable' src={user.image} alt={user.username} />
             </PopUpDialog>
           }
           title={
@@ -29,7 +29,7 @@ const UserCard = ({ user, children }) => {
               alignItems='center'
               justifyContent='space-between'
             >
-              {user.username()}
+              {user.username}
               {children}
             </Typography>
           }

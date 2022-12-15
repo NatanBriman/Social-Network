@@ -4,18 +4,17 @@ import { useDispatch } from 'react-redux';
 import UserCard from '../../../../Components/UserCard';
 import { userActions } from '../../../../Redux/Features/UserSlice';
 
-const FriendRecommendation = ({ user }) => {
+const FriendRecommendation = ({ friend }) => {
   const dispatch = useDispatch();
 
   const addFriend = () => {
     const { addFriend } = userActions;
-    const friendAsObject = user.getInstanceAsObject();
 
-    dispatch(addFriend(friendAsObject));
+    dispatch(addFriend(friend));
   };
 
   return (
-    <UserCard user={user}>
+    <UserCard user={friend}>
       <IconButton onClick={addFriend}>
         <AddIcon />
       </IconButton>
