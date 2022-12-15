@@ -39,3 +39,21 @@ a {
   box-shadow: var(--hover-shadow);
   transform: scale(1.01);
 }
+
+.scroll {
+  overflow-y: scroll;
+}
+
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.max-width {
+  width: 100%;
+}
+
+.centered-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
