@@ -19,15 +19,15 @@ const NavBar = ({ routes }) => {
           <Avatar
             className='shadow'
             style={{ width: '3em', height: '3em' }}
-            alt={user.username()}
-            src={user.image()}
+            alt={user.username}
+            src={user.image}
           />
 
           <Box ml={2}>
             <Typography variant='body1'>Hey,</Typography>
 
             <Typography variant='h5'>
-              <strong>{user.username()}</strong>
+              <strong>{user.username}</strong>
             </Typography>
           </Box>
 
@@ -36,7 +36,7 @@ const NavBar = ({ routes }) => {
           </Box>
         </Grid>
 
-        <Grid display='flex' justifyContent='center' alignItems='center'>
+        <Grid className='centered-content'>
           {routes.map(({ path, text }) => (
             <Box key={path} ml={1}>
               <Button>
