@@ -1,4 +1,5 @@
 import { Avatar, Box, Card, CardHeader, Typography } from '@mui/material';
+import PopUpDialog from './PopUpDialog';
 
 const UserCard = ({ user, children }) => {
   return (
@@ -6,7 +7,21 @@ const UserCard = ({ user, children }) => {
       <Box display='flex'>
         <CardHeader
           className='max-width'
-          avatar={<Avatar className='shadow' src={user.image()} alt={user.username()} />}
+          avatar={
+            <PopUpDialog
+              title={user.username()}
+              dialogContent={
+                <img
+                  style={{ maxHeight: '50vh', maxWidth: '80wh' }}
+                  className='shadow rounded'
+                  src={user.image()}
+                  alt={user.username()}
+                />
+              }
+            >
+              <Avatar className='shadow clickable' src={user.image()} alt={user.username()} />
+            </PopUpDialog>
+          }
           title={
             <Typography
               variant='h5'

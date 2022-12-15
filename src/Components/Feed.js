@@ -8,7 +8,7 @@ const Feed = ({ paperStyle, feedStyle, title, items, component }) => {
       </Typography>
       <Divider />
 
-      <Box p={2} pb={0} className='scroll centered-content' style={feedStyle}>
+      <Box p={2} pb={0} className='scroll' display='flex' flexDirection='column' style={feedStyle}>
         {items.map((item) => (
           <Box key={item.id instanceof Function ? item.id() : item.id} mb={3} className='max-width'>
             {component(item)}

@@ -9,6 +9,16 @@ const FriendsRecommendationsFeed = ({ style }) => {
       'Natan Briman',
       'https://images.pexels.com/photos/1559486/pexels-photo-1559486.jpeg?auto=compress&cs=tinysrgb&w=600'
     ),
+    new UserDTO(
+      3,
+      'Rotem Avraham',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3WEmfJCME77ZGymWrlJkXRv5bWg9QQmQEzw&usqp=CAU'
+    ),
+    new UserDTO(
+      4,
+      'Ruti Sinay',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeik6d5EHLTi89m_CKLXyShylk4L92YflpJQ&usqp=CAU'
+    ),
   ];
 
   return (
