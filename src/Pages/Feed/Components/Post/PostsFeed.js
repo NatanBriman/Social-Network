@@ -1,7 +1,8 @@
+import { useEffect, useState } from 'react';
 import Feed from '../../../../Components/Feed';
 import PostCard from './PostCard';
 
-const PostsFeed = ({ style }) => {
+const getPostsFromAPI = () => {
   const POSTS = [
     {
       id: 'bc050084-fa9b-19c9-a16b-9e5b8277bab1',
@@ -57,12 +58,32 @@ const PostsFeed = ({ style }) => {
     },
   ];
 
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(POSTS);
+    }, 1000);
+  });
+};
+
+const initializePosts = async (callback) => {
+  const posts = await getPostsFromAPI();
+
+  callback(posts);
+};
+
+const PostsFeed = ({ style }) => {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    initializePosts(setPosts);
+  }, []);
+
   return (
     <Feed
       paperStyle={style}
       feedStyle={{ maxHeight: '70vh', minHeight: '40vh' }}
       title='Feed'
-      items={POSTS}
+      items={posts}
       component={(post) => <PostCard post={post} />}
     />
   );

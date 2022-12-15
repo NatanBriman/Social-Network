@@ -1,7 +1,8 @@
+import { useEffect, useState } from 'react';
 import Feed from '../../../../Components/Feed';
 import FriendRecommendation from './FriendRecommendation';
 
-const FriendsRecommendationsFeed = ({ style }) => {
+const getFriendsRecommendationsFromAPI = () => {
   const FRIENDS_RECOMMENDATIONS = [
     {
       id: 2,
@@ -23,12 +24,32 @@ const FriendsRecommendationsFeed = ({ style }) => {
     },
   ];
 
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(FRIENDS_RECOMMENDATIONS);
+    }, 1000);
+  });
+};
+
+const initializeFriendsRecommendations = async (callback) => {
+  const friendsRecommendations = await getFriendsRecommendationsFromAPI();
+
+  callback(friendsRecommendations);
+};
+
+const FriendsRecommendationsFeed = ({ style }) => {
+  const [friendsRecommendations, setFriendsRecommendations] = useState([]);
+
+  useEffect(() => {
+    initializeFriendsRecommendations(setFriendsRecommendations);
+  }, []);
+
   return (
     <Feed
       paperStyle={style}
       feedStyle={{ maxHeight: '80vh', minHeight: '30vh' }}
       title='Recommended Friends'
-      items={FRIENDS_RECOMMENDATIONS}
+      items={friendsRecommendations}
       component={(friend) => <FriendRecommendation friend={friend} />}
     />
   );
