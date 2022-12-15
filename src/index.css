@@ -51,3 +51,9 @@ a {
 .max-width {
   width: 100%;
 }
+
+.centered-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

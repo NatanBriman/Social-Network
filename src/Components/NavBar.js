@@ -36,7 +36,7 @@ const NavBar = ({ routes }) => {
           </Box>
         </Grid>
 
-        <Grid display='flex' justifyContent='center' alignItems='center'>
+        <Grid className='centered-content'>
           {routes.map(({ path, text }) => (
             <Box key={path} ml={1}>
               <Button>

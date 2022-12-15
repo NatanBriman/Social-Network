@@ -19,27 +19,6 @@ const FriendsRecommendationsFeed = ({ style }) => {
       items={FRIENDS_RECOMMENDATIONS}
       component={(friend) => <FriendRecommendation user={friend} />}
     />
-    // <Paper elevation={24} className='shadow rounded' style={style}>
-    //   <Typography textAlign='center' variant='h5' p={2}>
-    //     Recommended Friends
-    //   </Typography>
-    //   <Divider />
-    //   <Box
-    //     p={2}
-    //     pb={0}
-    //     display='flex'
-    //     flexDirection='column'
-    //     alignItems='center'
-    //     className='scroll'
-    //     style={{ maxHeight: '80vh', minHeight: '30vh' }}
-    //   >
-    //     {FRIENDS_RECOMMENDATIONS.map((friend) => (
-    //       <Box key={friend.id()} mb={3} className='max-width'>
-    //         <FriendRecommendation user={friend} />
-    //       </Box>
-    //     ))}
-    //   </Box>
-    // </Paper>
   );
 };
 
