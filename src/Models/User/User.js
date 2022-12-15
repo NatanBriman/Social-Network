@@ -60,4 +60,16 @@ export default class User {
 
     this.#friends = updatedFriends;
   }
+
+  getInstanceAsObject() {
+    return {
+      id: this.id(),
+      username: this.username(),
+      password: this.password(),
+      image: this.image(),
+      friends: this.friends(),
+      likedPosts: this.likedPosts(),
+      joinedDate: this.joinedDate(),
+    };
+  }
 }

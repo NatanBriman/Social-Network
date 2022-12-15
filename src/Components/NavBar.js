@@ -1,5 +1,5 @@
 import { AppBar, Avatar, Box, Button, Grid, IconButton, Typography } from '@mui/material';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { userSelector } from '../Redux/Features/UserSlice';
@@ -7,6 +7,10 @@ import { ColorModeContext } from '../Theme/ThemeContext';
 
 const NavBar = ({ routes }) => {
   const user = useSelector(userSelector);
+  useEffect(() => {
+    console.dir(user);
+  }, [user]);
+
   const { toggleColorMode, currentThemeIcon } = useContext(ColorModeContext);
 
   const currentRoute = useLocation().pathname;
@@ -19,15 +23,15 @@ const NavBar = ({ routes }) => {
           <Avatar
             className='shadow'
             style={{ width: '3em', height: '3em' }}
-            alt={user.username()}
-            src={user.image()}
+            alt={user.username}
+            src={user.image}
           />
 
           <Box ml={2}>
             <Typography variant='body1'>Hey,</Typography>
 
             <Typography variant='h5'>
-              <strong>{user.username()}</strong>
+              <strong>{user.username}</strong>
             </Typography>
           </Box>
 

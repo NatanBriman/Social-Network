@@ -7,6 +7,7 @@ const PostsFeed = ({ style }) => {
   const POSTS = [
     new Post(
       new UserDTO(
+        1,
         'Example Name',
         'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600'
       ),
@@ -16,6 +17,7 @@ const PostsFeed = ({ style }) => {
     ),
     new Post(
       new UserDTO(
+        1,
         'Example Name',
         'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600'
       ),
@@ -25,6 +27,7 @@ const PostsFeed = ({ style }) => {
     ),
     new Post(
       new UserDTO(
+        1,
         'Example Name',
         'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600'
       ),
@@ -34,6 +37,7 @@ const PostsFeed = ({ style }) => {
     ),
     new Post(
       new UserDTO(
+        1,
         'Example Name',
         'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600'
       ),
@@ -43,6 +47,7 @@ const PostsFeed = ({ style }) => {
     ),
     new Post(
       new UserDTO(
+        1,
         'Example Name',
         'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600'
       ),
@@ -52,6 +57,7 @@ const PostsFeed = ({ style }) => {
     ),
     new Post(
       new UserDTO(
+        1,
         'Example Name',
         'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600'
       ),
@@ -61,6 +67,7 @@ const PostsFeed = ({ style }) => {
     ),
     new Post(
       new UserDTO(
+        1,
         'Example Name',
         'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600'
       ),
@@ -82,7 +89,7 @@ const PostsFeed = ({ style }) => {
         style={{ maxHeight: '80vh', minHeight: '40vh' }}
       >
         {POSTS.map((post) => (
-          <Box key={post.id()} mb={3} width='100%'>
+          <Box key={post.id()} mb={3} className='max-width'>
             <PostCard post={post} />
           </Box>
         ))}

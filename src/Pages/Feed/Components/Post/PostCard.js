@@ -44,7 +44,7 @@ const PostCard = ({ post }) => {
       <Divider />
 
       <CardActions>
-        <Box width='100%' display='flex' justifyContent='flex-end' gap={1}>
+        <Box className='max-width' display='flex' justifyContent='flex-end' gap={1}>
           <Button variant='outlined'>Like</Button>
           <Button variant='outlined'>Share</Button>
           <Button variant='outlined'>Comment</Button>

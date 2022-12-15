@@ -1,11 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import User from '../../Models/User/User';
 
-const INITIAL_USER = new User(
-  'Natan Briman',
-  'PASSWORD',
-  'https://media-exp1.licdn.com/dms/image/D4E35AQGK4ozVskWbmQ/profile-framedphoto-shrink_400_400/0/1634383529380?e=1671530400&v=beta&t=Njg5YE0g3yo3455OUIiyQ6-akjBHjPN8VPWr0g5v5go'
-);
+const INITIAL_USER = {
+  id: '9ec814af-06d4-3da7-224b-13034af898c5',
+  username: 'Natan Briman',
+  password: 'PASSWORD',
+  image:
+    'https://media-exp1.licdn.com/dms/image/D4E35AQGK4ozVskWbmQ/profile-framedphoto-shrink_400_400/0/1634383529380?e=1671530400&v=beta&t=Njg5YE0g3yo3455OUIiyQ6-akjBHjPN8VPWr0g5v5go',
+  friends: [],
+  likedPosts: [],
+  joinedDate: Date.now(),
+};
 
 const userSlice = createSlice({
   name: 'UserSlice',
@@ -23,23 +27,29 @@ const userSlice = createSlice({
     },
     addLikedPost: (state, action) => {
       const likedPostToAdd = action.payload;
+      const updatedLikedPosts = [...state.user.likedPosts, likedPostToAdd];
 
-      state.user.addLikedPost(likedPostToAdd);
+      state.user.likedPosts = updatedLikedPosts;
     },
     removeLikedPost: (state, action) => {
       const likedPostToRemove = action.payload;
+      const updatedLikedPosts = state.user.likedPosts.filter(
+        (post) => post.id !== likedPostToRemove.id
+      );
 
-      state.user.removeLikedPost(likedPostToRemove);
+      state.user.likedPosts = updatedLikedPosts;
     },
     addFriend: (state, action) => {
       const friendToAdd = action.payload;
+      const updatedFriends = [...state.user.friends, friendToAdd];
 
-      state.user.addFriend(friendToAdd);
+      state.user.friends = updatedFriends;
     },
     removeFriend: (state, action) => {
       const friendToRemove = action.payload;
+      const updatedFriends = state.user.friends.filter((friend) => friend.id !== friendToRemove.id);
 
-      state.user.removeFriend(friendToRemove);
+      state.user.friends = updatedFriends;
     },
   },
 });
