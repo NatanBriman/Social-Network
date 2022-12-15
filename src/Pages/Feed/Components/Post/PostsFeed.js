@@ -1,6 +1,6 @@
 import { Box, Paper } from '@mui/material';
-import Post from '../../../Models/Post/Post';
-import UserDTO from '../../../Models/User/UserDTO';
+import Post from '../../../../Models/Post/Post';
+import UserDTO from '../../../../Models/User/UserDTO';
 import PostCard from './PostCard';
 
 const PostsFeed = ({ style }) => {
@@ -78,7 +78,8 @@ const PostsFeed = ({ style }) => {
         display='flex'
         flexDirection='column'
         alignItems='center'
-        style={{ maxHeight: '80vh', overflowY: 'scroll' }}
+        className='scroll'
+        style={{ maxHeight: '80vh', minHeight: '40vh' }}
       >
         {POSTS.map((post) => (
           <Box key={post.id()} mb={3} width='100%'>

@@ -10,8 +10,8 @@ import {
   Divider,
   Typography,
 } from '@mui/material';
-import PopUpDialog from '../../../Components/PopUpDialog';
-import ReadMore from '../../../Components/ReadMore';
+import PopUpDialog from '../../../../Components/PopUpDialog';
+import ReadMore from '../../../../Components/ReadMore';
 
 const PostCard = ({ post }) => {
   return (

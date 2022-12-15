@@ -39,3 +39,11 @@ a {
   box-shadow: var(--hover-shadow);
   transform: scale(1.01);
 }
+
+.scroll {
+  overflow-y: scroll;
+}
+
+.scroll::-webkit-scrollbar {
+  display: none;
+}
