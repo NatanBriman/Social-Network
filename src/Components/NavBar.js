@@ -1,5 +1,5 @@
 import { AppBar, Avatar, Box, Button, Grid, IconButton, Typography } from '@mui/material';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { userSelector } from '../Redux/Features/UserSlice';
@@ -7,10 +7,6 @@ import { ColorModeContext } from '../Theme/ThemeContext';
 
 const NavBar = ({ routes }) => {
   const user = useSelector(userSelector);
-  useEffect(() => {
-    console.dir(user);
-  }, [user]);
-
   const { toggleColorMode, currentThemeIcon } = useContext(ColorModeContext);
 
   const currentRoute = useLocation().pathname;
