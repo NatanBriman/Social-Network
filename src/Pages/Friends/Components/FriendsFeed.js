@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import Feed from '../../../Components/Feed';
-import { userSelector } from '../../../Redux/Features/UserSlice';
+import { userSelector } from '../../../Redux/Features/User/UserSlice';
 import Friend from './Friend';
 
 const FriendsFeed = ({ style }) => {

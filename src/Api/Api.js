@@ -1,6 +1,6 @@
 import { INITIAL_RECOMMENDED_FRIENDS, POSTS } from '../Utils/Constants';
 
-const API_REQUEST_DELAY = 20000;
+const API_REQUEST_DELAY = 200;
 
 const api = {
   posts: {

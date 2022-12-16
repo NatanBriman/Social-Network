@@ -2,14 +2,16 @@ import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import api from '../../../../Api/Api';
 import Feed from '../../../../Components/Feed';
-import useDataFromAPI from '../../../../Hooks/useDataFromAPI';
-import { userSelector } from '../../../../Redux/Features/UserSlice';
+import useLocalStorageFromAPI from '../../../../Hooks/useLocalStorageFromAPI';
+import { userSelector } from '../../../../Redux/Features/User/UserSlice';
+import { LOCAL_STORAGE_KEYS } from '../../../../Utils/Constants';
 import RecommendedFriend from './RecommendedFriends';
 
 const RecommendedFriendsFeed = ({ paperStyle }) => {
-  const [recommendedFriends, setRecommendedFriends, isLoading] = useDataFromAPI(
+  const [recommendedFriends, setRecommendedFriends, isLoading] = useLocalStorageFromAPI(
     [],
-    api.recommendedFriends.getAllRecommendedFriends
+    api.recommendedFriends.getAllRecommendedFriends,
+    LOCAL_STORAGE_KEYS.recommendedFriends
   );
 
   const { friends } = useSelector(userSelector);

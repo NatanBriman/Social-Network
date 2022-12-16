@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import useDataFromAPI from './useDataFromAPI';
 
 const useLocalStorageFromAPI = (initialValue, requestDataFromAPI, key) => {
@@ -19,6 +20,12 @@ const useLocalStorageFromAPI = (initialValue, requestDataFromAPI, key) => {
     initialValueFromLocalStorage,
     initializeValueInLocalStorage
   );
+
+  useEffect(() => {
+    const stringValue = JSON.stringify(data);
+
+    localStorage.setItem(key, stringValue);
+  }, [key, data]);
 
   return [data, setData, isLoading];
 };

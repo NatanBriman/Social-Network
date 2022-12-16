@@ -2,7 +2,7 @@ import { AppBar, Avatar, Box, Button, Grid, IconButton, Typography } from '@mui/
 import { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { userSelector } from '../Redux/Features/UserSlice';
+import { userSelector } from '../Redux/Features/User/UserSlice';
 import { ColorModeContext } from '../Theme/ThemeContext';
 
 const NavBar = ({ routes }) => {

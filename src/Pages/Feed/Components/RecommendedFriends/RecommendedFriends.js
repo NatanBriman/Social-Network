@@ -2,7 +2,7 @@ import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import { IconButton } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import UserCard from '../../../../Components/UserCard';
-import { userActions } from '../../../../Redux/Features/UserSlice';
+import { userActions } from '../../../../Redux/Features/User/UserSlice';
 import { removeObjectFromArrayById, showToast } from '../../../../Utils/Helpers';
 
 const RecommendedFriend = ({ friend, setRecommendedFriends }) => {

@@ -2,7 +2,7 @@ import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 import { IconButton } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import UserCard from '../../../Components/UserCard';
-import { userActions } from '../../../Redux/Features/UserSlice';
+import { userActions } from '../../../Redux/Features/User/UserSlice';
 import { showToast } from '../../../Utils/Helpers';
 
 const Friend = ({ friend }) => {
