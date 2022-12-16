@@ -3,7 +3,7 @@ import { IconButton } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import UserCard from '../../../../Components/UserCard';
 import { userActions } from '../../../../Redux/Features/UserSlice';
-import { removeObjectFromArrayById, showAlert } from '../../../../Utils/Helpers';
+import { removeObjectFromArrayById, showToast } from '../../../../Utils/Helpers';
 
 const RecommendedFriend = ({ friend, setRecommendedFriends }) => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const RecommendedFriend = ({ friend, setRecommendedFriends }) => {
     addFriendToCurrentUser();
     removeFriendRecommendation();
 
-    showAlert(
+    showToast(
       'success',
       <p>
         <em>{friend.username}</em> was added successfully!
