@@ -1,14 +1,15 @@
 import { AppBar, Avatar, Box, Button, Grid, IconButton, Typography } from '@mui/material';
 import { useContext } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { userSelector } from '../Redux/Features/UserSlice';
 import { ColorModeContext } from '../Theme/ThemeContext';
 
 const NavBar = ({ routes }) => {
   const user = useSelector(userSelector);
-  const { toggleColorMode, currentThemeIcon } = useContext(ColorModeContext);
+  const navigate = useNavigate();
 
+  const { toggleColorMode, currentThemeIcon } = useContext(ColorModeContext);
   const currentRoute = useLocation().pathname;
   const isCurrentRoute = (route) => route === currentRoute;
 
@@ -39,16 +40,14 @@ const NavBar = ({ routes }) => {
         <Grid className='centered-content'>
           {routes.map(({ path, text }) => (
             <Box key={path} ml={1}>
-              <Button>
-                <Link
-                  to={path}
-                  style={{
-                    fontSize: '1.5rem',
-                    textDecoration: isCurrentRoute(path) && 'underline',
-                  }}
-                >
-                  {text}
-                </Link>
+              <Button
+                onClick={() => navigate(path)}
+                style={{
+                  fontSize: '1.5rem',
+                  textDecoration: isCurrentRoute(path) && 'underline',
+                }}
+              >
+                {text}
               </Button>
             </Box>
           ))}

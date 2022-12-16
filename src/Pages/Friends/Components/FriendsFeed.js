@@ -13,6 +13,7 @@ const FriendsFeed = ({ style }) => {
       title='My Friends'
       items={friends}
       component={(friend) => <UserCard user={friend} />}
+      emptyText="You didn't add any friends yet"
     />
   );
 };
