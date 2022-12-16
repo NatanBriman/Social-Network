@@ -18,7 +18,7 @@ const App = () => {
         limit={5}
         theme='dark'
         className='text-end fs-4'
-        style={{ width: '25%' }}
+        style={{ width: '30%' }}
       />
     </>
   );

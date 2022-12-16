@@ -1,4 +1,4 @@
-import AddIcon from '@mui/icons-material/Add';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import { IconButton } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import UserCard from '../../../../Components/UserCard';
@@ -23,13 +23,18 @@ const RecommendedFriend = ({ friend, setRecommendedFriends }) => {
     addFriendToCurrentUser();
     removeFriendRecommendation();
 
-    showAlert('success', 'Friend added successfully!');
+    showAlert(
+      'success',
+      <p>
+        <em>{friend.username}</em> was added successfully!
+      </p>
+    );
   };
 
   return (
     <UserCard user={friend}>
       <IconButton onClick={handleAddFriend}>
-        <AddIcon />
+        <PersonAddAlt1Icon />
       </IconButton>
     </UserCard>
   );
