@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 const initializeDataFromAPI = async (requestDataFromAPI, callback) => {
   const data = await requestDataFromAPI();
@@ -16,9 +16,7 @@ const useDataFromAPI = (initialValue, requestDataFromAPI) => {
     setIsLoading(false);
   };
 
-  useEffect(() => {
-    initializeDataFromAPI(requestDataFromAPI, handleReceivingData);
-  }, []);
+  useMemo(() => initializeDataFromAPI(requestDataFromAPI, handleReceivingData), []);
 
   return [data, setData, isLoading];
 };

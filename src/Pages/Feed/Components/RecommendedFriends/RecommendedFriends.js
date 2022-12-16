@@ -3,19 +3,31 @@ import { IconButton } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import UserCard from '../../../../Components/UserCard';
 import { userActions } from '../../../../Redux/Features/UserSlice';
+import { removeObjectFromArrayById } from '../../../../Utils/Helpers';
 
-const RecommendedFriend = ({ friend }) => {
+const RecommendedFriend = ({ friend, setRecommendedFriends }) => {
   const dispatch = useDispatch();
 
-  const addFriend = () => {
+  const addFriendToCurrentUser = () => {
     const { addFriend } = userActions;
 
     dispatch(addFriend(friend));
   };
 
+  const removeFriendRecommendation = () =>
+    setRecommendedFriends((recommendedFriends) =>
+      removeObjectFromArrayById(recommendedFriends, friend)
+    );
+
+  const handleAddFriend = () => {
+    addFriendToCurrentUser();
+
+    removeFriendRecommendation();
+  };
+
   return (
     <UserCard user={friend}>
-      <IconButton onClick={addFriend}>
+      <IconButton onClick={handleAddFriend}>
         <AddIcon />
       </IconButton>
     </UserCard>
