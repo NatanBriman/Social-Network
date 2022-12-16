@@ -4,7 +4,7 @@ import useDataFromAPI from '../../../../Hooks/useDataFromAPI';
 import RecommendedFriend from './RecommendedFriends';
 
 const RecommendedFriendsFeed = ({ style }) => {
-  const [friendsRecommendations, setFriendsRecommendations] = useDataFromAPI(
+  const [friendsRecommendations, setFriendsRecommendations, isLoading] = useDataFromAPI(
     [],
     api.recommendedFriends.getAllRecommendedFriends
   );
@@ -17,6 +17,7 @@ const RecommendedFriendsFeed = ({ style }) => {
       items={friendsRecommendations}
       component={(friend) => <RecommendedFriend friend={friend} />}
       emptyText='There are no recommended friends at the moment'
+      isLoading={isLoading}
     />
   );
 };

@@ -6,14 +6,21 @@ const initializeDataFromAPI = async (requestDataFromAPI, callback) => {
   callback(data);
 };
 
-const useDataFromAPI = (initialValue, getData) => {
+const useDataFromAPI = (initialValue, requestDataFromAPI) => {
   const [data, setData] = useState(initialValue);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleReceivingData = (dataFromAPI) => {
+    setData(dataFromAPI);
+
+    setIsLoading(false);
+  };
 
   useEffect(() => {
-    initializeDataFromAPI(getData, setData);
+    initializeDataFromAPI(requestDataFromAPI, handleReceivingData);
   }, []);
 
-  return [data, setData];
+  return [data, setData, isLoading];
 };
 
 export default useDataFromAPI;

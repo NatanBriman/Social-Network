@@ -4,7 +4,7 @@ import useDataFromAPI from '../../../../Hooks/useDataFromAPI';
 import PostCard from './PostCard';
 
 const PostsFeed = ({ style }) => {
-  const [posts, setPosts] = useDataFromAPI([], api.posts.getAllPosts);
+  const [posts, setPosts, isLoading] = useDataFromAPI([], api.posts.getAllPosts);
 
   return (
     <Feed
@@ -14,6 +14,7 @@ const PostsFeed = ({ style }) => {
       items={posts}
       component={(post) => <PostCard post={post} />}
       emptyText='There are no posts at the moment'
+      isLoading={isLoading}
     />
   );
 };
