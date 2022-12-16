@@ -1,3 +1,5 @@
+const API_REQUEST_DELAY = 200;
+
 const api = {
   posts: {
     async getAllPosts() {
@@ -59,13 +61,13 @@ const api = {
       return new Promise((resolve) => {
         setTimeout(() => {
           resolve(POSTS);
-        }, 500);
+        }, API_REQUEST_DELAY);
       });
     },
   },
-  friendsRecommendations: {
-    async getAllFriendsRecommendations() {
-      const FRIENDS_RECOMMENDATIONS = [
+  recommendedFriends: {
+    async getAllRecommendedFriends() {
+      const RECOMMENDED_FRIENDS = [
         {
           id: 2,
           username: 'Natan Briman',
@@ -88,8 +90,8 @@ const api = {
 
       return new Promise((resolve) => {
         setTimeout(() => {
-          resolve(FRIENDS_RECOMMENDATIONS);
-        }, 500);
+          resolve(RECOMMENDED_FRIENDS);
+        }, API_REQUEST_DELAY);
       });
     },
   },

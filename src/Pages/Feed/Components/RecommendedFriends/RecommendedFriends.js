@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import UserCard from '../../../../Components/UserCard';
 import { userActions } from '../../../../Redux/Features/UserSlice';
 
-const FriendRecommendation = ({ friend }) => {
+const RecommendedFriend = ({ friend }) => {
   const dispatch = useDispatch();
 
   const addFriend = () => {
@@ -22,4 +22,4 @@ const FriendRecommendation = ({ friend }) => {
   );
 };
 
-export default FriendRecommendation;
+export default RecommendedFriend;

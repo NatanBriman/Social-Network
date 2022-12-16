@@ -1,7 +1,7 @@
 import { Box, Divider, Paper, Typography } from '@mui/material';
 
-const Feed = ({ paperStyle, feedStyle, title, items, component }) => {
-  const isItemsEmpty = items.length === 0;
+const Feed = ({ paperStyle, feedStyle, title, items, component, emptyText }) => {
+  const isFeedEmpty = items.length === 0;
 
   return (
     <Paper elevation={24} className='shadow rounded' style={paperStyle}>
@@ -10,9 +10,11 @@ const Feed = ({ paperStyle, feedStyle, title, items, component }) => {
       </Typography>
       <Divider />
 
-      {isItemsEmpty ? (
-        <Box mb={3} className='centered-content'>
-          <Typography variant='h3'>Loading...</Typography>
+      {isFeedEmpty ? (
+        <Box mb={3} className='centered-content' p={1}>
+          <Typography textAlign='center' variant='h5'>
+            {emptyText}
+          </Typography>
         </Box>
       ) : (
         <Box

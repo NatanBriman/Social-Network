@@ -10,9 +10,10 @@ const PostsFeed = ({ style }) => {
     <Feed
       paperStyle={style}
       feedStyle={{ maxHeight: '70vh', minHeight: '40vh' }}
-      title='Feed'
+      title='Posts Feed'
       items={posts}
       component={(post) => <PostCard post={post} />}
+      emptyText='There are no posts at the moment'
     />
   );
 };

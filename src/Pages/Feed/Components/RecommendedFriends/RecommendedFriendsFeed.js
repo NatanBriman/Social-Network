@@ -1,12 +1,12 @@
 import api from '../../../../Api/Api';
 import Feed from '../../../../Components/Feed';
 import useDataFromAPI from '../../../../Hooks/useDataFromAPI';
-import FriendRecommendation from './FriendRecommendation';
+import RecommendedFriend from './RecommendedFriends';
 
-const FriendsRecommendationsFeed = ({ style }) => {
+const RecommendedFriendsFeed = ({ style }) => {
   const [friendsRecommendations, setFriendsRecommendations] = useDataFromAPI(
     [],
-    api.friendsRecommendations.getAllFriendsRecommendations
+    api.recommendedFriends.getAllRecommendedFriends
   );
 
   return (
@@ -15,9 +15,10 @@ const FriendsRecommendationsFeed = ({ style }) => {
       feedStyle={{ maxHeight: '80vh', minHeight: '30vh' }}
       title='Recommended Friends'
       items={friendsRecommendations}
-      component={(friend) => <FriendRecommendation friend={friend} />}
+      component={(friend) => <RecommendedFriend friend={friend} />}
+      emptyText='There are no recommended friends at the moment'
     />
   );
 };
 
-export default FriendsRecommendationsFeed;
+export default RecommendedFriendsFeed;
