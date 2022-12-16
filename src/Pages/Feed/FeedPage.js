@@ -1,13 +1,15 @@
 import { Grid } from '@mui/material';
-import FriendsRecommendationsFeed from './Components/FriendsRecommendations/FriendsRecommendationsFeed';
 import PostsFeed from './Components/Post/PostsFeed';
+import RecommendedFriendsFeed from './Components/RecommendedFriends/RecommendedFriendsFeed';
 
 const FeedPage = () => {
   return (
-    <Grid height='100%' my={2} display='flex' alignItems='center' justifyContent='space-evenly'>
-      <PostsFeed style={{ width: '40%', alignSelf: 'flex-start' }} />
+    <Grid my={2} display='flex' alignItems='center' justifyContent='space-evenly'>
+      <PostsFeed paperStyle={{ width: '40%', alignSelf: 'flex-start', minHeight: '80vh' }} />
 
-      <FriendsRecommendationsFeed style={{ width: '30%', alignSelf: 'flex-start' }} />
+      <RecommendedFriendsFeed
+        paperStyle={{ width: '30%', alignSelf: 'flex-start', minHeight: '30vh' }}
+      />
     </Grid>
   );
 };

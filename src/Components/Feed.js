@@ -1,7 +1,8 @@
 import { Box, Divider, Paper, Typography } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 
-const Feed = ({ paperStyle, feedStyle, title, items, component }) => {
-  const isItemsEmpty = items.length === 0;
+const Feed = ({ paperStyle, feedStyle, title, items, component, emptyText, isLoading }) => {
+  const isFeedEmpty = items.length === 0;
 
   return (
     <Paper elevation={24} className='shadow rounded' style={paperStyle}>
@@ -10,9 +11,11 @@ const Feed = ({ paperStyle, feedStyle, title, items, component }) => {
       </Typography>
       <Divider />
 
-      {isItemsEmpty ? (
-        <Box mb={3} className='centered-content'>
-          <Typography variant='h3'>Loading...</Typography>
+      {isLoading || isFeedEmpty ? (
+        <Box my={3} className='centered-content' p={1}>
+          <Typography textAlign='center' variant='h5'>
+            {isLoading ? <CircularProgress color='inherit' /> : emptyText}
+          </Typography>
         </Box>
       ) : (
         <Box
