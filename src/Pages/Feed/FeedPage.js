@@ -5,10 +5,10 @@ import RecommendedFriendsFeed from './Components/RecommendedFriends/RecommendedF
 const FeedPage = () => {
   return (
     <Grid my={2} display='flex' alignItems='center' justifyContent='space-evenly'>
-      <PostsFeed style={{ width: '40%', alignSelf: 'flex-start', minHeight: '80vh' }} />
+      <PostsFeed paperStyle={{ width: '40%', alignSelf: 'flex-start', minHeight: '80vh' }} />
 
       <RecommendedFriendsFeed
-        style={{ width: '30%', alignSelf: 'flex-start', minHeight: '30vh' }}
+        paperStyle={{ width: '30%', alignSelf: 'flex-start', minHeight: '30vh' }}
       />
     </Grid>
   );

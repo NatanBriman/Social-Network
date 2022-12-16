@@ -96,3 +96,7 @@ export const POSTS = [
     description: 'This is the description...',
   },
 ];
+
+export const LOCAL_STORAGE_KEYS = {
+  posts: 'POSTS',
+};

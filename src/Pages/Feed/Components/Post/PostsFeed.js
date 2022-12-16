@@ -1,14 +1,19 @@
 import api from '../../../../Api/Api';
 import Feed from '../../../../Components/Feed';
-import useDataFromAPI from '../../../../Hooks/useDataFromAPI';
+import useLocalStorageFromAPI from '../../../../Hooks/useLocalStorageFromAPI';
+import { LOCAL_STORAGE_KEYS } from '../../../../Utils/Constants';
 import PostCard from './PostCard';
 
-const PostsFeed = ({ style }) => {
-  const [posts, setPosts, isLoading] = useDataFromAPI([], api.posts.getAllPosts);
+const PostsFeed = ({ paperStyle }) => {
+  const [posts, setPosts, isLoading] = useLocalStorageFromAPI(
+    [],
+    api.posts.getAllPosts,
+    LOCAL_STORAGE_KEYS.posts
+  );
 
   return (
     <Feed
-      paperStyle={style}
+      paperStyle={paperStyle}
       feedStyle={{ maxHeight: '70vh', minHeight: '40vh' }}
       title='Posts Feed'
       items={posts}

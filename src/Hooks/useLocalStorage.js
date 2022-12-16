@@ -4,11 +4,10 @@ const useLocalStorage = (key, initialValue) => {
   const [value, setValue] = useState(() => {
     const jsonValue = localStorage.getItem(key);
 
-    if (jsonValue != null) return JSON.parse(jsonValue);
-
-    return initialValue;
+    return jsonValue != null ? JSON.parse(jsonValue) : initialValue;
   });
 
+  // Maybe use useEffect instead of useMemo
   useEffect(() => {
     const stringValue = JSON.stringify(value);
 

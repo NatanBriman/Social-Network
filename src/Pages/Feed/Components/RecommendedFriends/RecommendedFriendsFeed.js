@@ -6,7 +6,7 @@ import useDataFromAPI from '../../../../Hooks/useDataFromAPI';
 import { userSelector } from '../../../../Redux/Features/UserSlice';
 import RecommendedFriend from './RecommendedFriends';
 
-const RecommendedFriendsFeed = ({ style }) => {
+const RecommendedFriendsFeed = ({ paperStyle }) => {
   const [recommendedFriends, setRecommendedFriends, isLoading] = useDataFromAPI(
     [],
     api.recommendedFriends.getAllRecommendedFriends
@@ -22,7 +22,7 @@ const RecommendedFriendsFeed = ({ style }) => {
 
   return (
     <Feed
-      paperStyle={style}
+      paperStyle={paperStyle}
       feedStyle={{ maxHeight: '80vh' }}
       title='Recommended Friends'
       items={filteredRecommendedFriends}
