@@ -1,4 +1,4 @@
-import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import { PersonAddAlt1 } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import UserCard from '../../../../Components/UserCard';
@@ -34,7 +34,7 @@ const RecommendedFriend = ({ friend, setRecommendedFriends }) => {
   return (
     <UserCard user={friend}>
       <IconButton onClick={handleAddFriend}>
-        <PersonAddAlt1Icon />
+        <PersonAddAlt1 />
       </IconButton>
     </UserCard>
   );
