@@ -3,37 +3,33 @@ import { IconButton } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import UserCard from '../../../../Components/UserCard';
 import { userActions } from '../../../../Redux/Features/User/UserSlice';
-import { removeObjectFromArrayById, showToast } from '../../../../Utils/Helpers';
+import { showToast } from '../../../../Utils/Helpers';
 
-const RecommendedFriend = ({ friend, setRecommendedFriends }) => {
+const RecommendedFriend = ({ friend }) => {
   const dispatch = useDispatch();
 
-  const addFriendToCurrentUser = () => {
+  const addFriendToCurrentUser = (friend) => {
     const { addFriend } = userActions;
 
     dispatch(addFriend(friend));
   };
 
-  const removeFriendRecommendation = () =>
-    setRecommendedFriends((recommendedFriends) =>
-      removeObjectFromArrayById(recommendedFriends, friend)
-    );
+  const removeFriendRecommendation = (friend) => {
+    const { removeRecommendedFriend } = userActions;
 
-  const handleAddFriend = () => {
-    addFriendToCurrentUser();
-    removeFriendRecommendation();
+    dispatch(removeRecommendedFriend(friend));
+  };
 
-    showToast(
-      'success',
-      <p>
-        <em>{friend.username}</em> was added successfully!
-      </p>
-    );
+  const handleAddFriend = (friend) => {
+    addFriendToCurrentUser(friend);
+    removeFriendRecommendation(friend);
+
+    showToast(`${(<em>{friend.username}</em>)} was added successfully!`);
   };
 
   return (
     <UserCard user={friend}>
-      <IconButton onClick={handleAddFriend}>
+      <IconButton onClick={() => handleAddFriend(friend)}>
         <PersonAddAlt1 />
       </IconButton>
     </UserCard>

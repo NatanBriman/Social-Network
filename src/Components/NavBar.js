@@ -10,8 +10,8 @@ const NavBar = ({ routes }) => {
   const navigate = useNavigate();
 
   const { toggleColorMode, currentThemeIcon } = useContext(ColorModeContext);
-  const currentRoute = useLocation().pathname;
-  const isCurrentRoute = (route) => route === currentRoute;
+  const { pathname } = useLocation();
+  const isCurrentRoute = (route) => route === pathname;
 
   return (
     <AppBar color='default' position='sticky'>

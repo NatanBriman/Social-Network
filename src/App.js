@@ -1,12 +1,20 @@
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import NavBar from './Components/NavBar';
+import { userSelector } from './Redux/Features/User/UserSlice';
 import RouterView from './Router/Router';
-import { ROUTES } from './Utils/Constants';
+import { LOGIN_ROUTE, ROUTES } from './Utils/Constants';
 
 const App = () => {
+  const user = useSelector(userSelector);
+  const routesInNavBar = ROUTES.filter((route) => route.loginRequired);
+  const { pathname } = useLocation();
+  const isLoginPage = pathname === LOGIN_ROUTE;
+
   return (
     <>
-      <NavBar routes={ROUTES} />
+      {!isLoginPage && <NavBar routes={routesInNavBar} />}
 
       <RouterView />
 

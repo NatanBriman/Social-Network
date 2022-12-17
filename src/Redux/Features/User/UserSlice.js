@@ -45,6 +45,22 @@ const userSlice = createSlice({
       state.user.friends = updatedFriends;
       updateUserInLocalStorage(state.user);
     },
+    addRecommendedFriend: (state, action) => {
+      const recommendedFriend = action.payload;
+      const updatedRecommendedFriends = [...state.user.recommendedFriends, recommendedFriend];
+
+      state.user.recommendedFriends = updatedRecommendedFriends;
+      updateUserInLocalStorage(state.user);
+    },
+    removeRecommendedFriend: (state, action) => {
+      const recommendedFriendToRemove = action.payload;
+      const updatedRecommendedFriends = state.user.recommendedFriends.filter(
+        (recommendedFriend) => recommendedFriend.id !== recommendedFriendToRemove.id
+      );
+
+      state.user.recommendedFriends = updatedRecommendedFriends;
+      updateUserInLocalStorage(state.user);
+    },
   },
 });
 
