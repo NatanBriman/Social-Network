@@ -1,3 +1,5 @@
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import {
   Avatar,
   Box,
@@ -8,12 +10,32 @@ import {
   CardHeader,
   CardMedia,
   Divider,
+  IconButton,
   Typography,
 } from '@mui/material';
+import { useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PopUpDialog from '../../../../Components/PopUpDialog';
 import ReadMore from '../../../../Components/ReadMore';
+import { userActions, userSelector } from '../../../../Redux/Features/User/UserSlice';
 
 const PostCard = ({ post }) => {
+  const dispatch = useDispatch();
+  const { likedPostsIds } = useSelector(userSelector);
+
+  const toggleLikePost = (postId) => {
+    const { addLikedPost, removeLikedPost } = userActions;
+    const toggleLikeAction = isPostLiked ? removeLikedPost : addLikedPost;
+
+    dispatch(toggleLikeAction(postId));
+  };
+
+  const isPostLiked = useMemo(() => likedPostsIds.includes(post.id), [post.id, likedPostsIds]);
+  const likeButtonIcon = useMemo(
+    () => (isPostLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />),
+    [isPostLiked]
+  );
+
   return (
     <Card className='shadow rounded'>
       <CardHeader
@@ -43,7 +65,9 @@ const PostCard = ({ post }) => {
 
       <CardActions>
         <Box className='max-width' display='flex' justifyContent='flex-end' gap={1}>
-          <Button variant='outlined'>Like</Button>
+          <IconButton color='error' onClick={() => toggleLikePost(post.id)}>
+            {likeButtonIcon}
+          </IconButton>
           <Button variant='outlined'>Share</Button>
           <Button variant='outlined'>Comment</Button>
         </Box>

@@ -16,19 +16,19 @@ const userSlice = createSlice({
       updateUserInLocalStorage(state.user);
     },
     addLikedPost: (state, action) => {
-      const likedPostToAdd = action.payload;
-      const updatedLikedPosts = [...state.user.likedPosts, likedPostToAdd];
+      const likedPostIdToAdd = action.payload;
+      const updatedLikedPostsIds = [...state.user.likedPostsIds, likedPostIdToAdd];
 
-      state.user.likedPosts = updatedLikedPosts;
+      state.user.likedPostsIds = updatedLikedPostsIds;
       updateUserInLocalStorage(state.user);
     },
     removeLikedPost: (state, action) => {
-      const likedPostToRemove = action.payload;
-      const updatedLikedPosts = state.user.likedPosts.filter(
-        (post) => post.id !== likedPostToRemove.id
+      const likedPostIdToRemove = action.payload;
+      const updatedLikedPostsIds = state.user.likedPostsIds.filter(
+        (postId) => postId !== likedPostIdToRemove
       );
 
-      state.user.likedPosts = updatedLikedPosts;
+      state.user.likedPostsIds = updatedLikedPostsIds;
       updateUserInLocalStorage(state.user);
     },
     addFriend: (state, action) => {

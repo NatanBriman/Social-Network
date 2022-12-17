@@ -7,7 +7,7 @@ const DEFAULT_USER = {
   image:
     'https://media-exp1.licdn.com/dms/image/D4E35AQGK4ozVskWbmQ/profile-framedphoto-shrink_400_400/0/1634383529380?e=1671530400&v=beta&t=Njg5YE0g3yo3455OUIiyQ6-akjBHjPN8VPWr0g5v5go',
   friends: [],
-  likedPosts: [],
+  likedPostsIds: [],
   joinedDate: Date.now(),
 };
 
