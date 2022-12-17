@@ -1,6 +1,6 @@
-import { INITIAL_RECOMMENDED_FRIENDS, POSTS } from '../Utils/Constants';
+import { POSTS, USERS } from '../Utils/Constants';
 
-const API_REQUEST_DELAY = 2000;
+const API_REQUEST_DELAY = 0;
 
 const api = {
   posts: {
@@ -12,11 +12,11 @@ const api = {
       });
     },
   },
-  recommendedFriends: {
-    async getAllRecommendedFriends() {
+  users: {
+    async getAllUsers() {
       return new Promise((resolve) => {
         setTimeout(() => {
-          resolve(INITIAL_RECOMMENDED_FRIENDS);
+          resolve(USERS);
         }, API_REQUEST_DELAY);
       });
     },

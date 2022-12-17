@@ -1,7 +1,16 @@
 import { Box, Divider, Paper, Typography } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const Feed = ({ paperStyle, feedStyle, title, items, component, emptyText, isLoading }) => {
+const Feed = ({
+  paperStyle,
+  feedStyle,
+  title,
+  items,
+  component,
+  emptyText,
+  isLoading,
+  isVertical = true,
+}) => {
   const isFeedEmpty = items.length === 0;
 
   return (
@@ -23,13 +32,13 @@ const Feed = ({ paperStyle, feedStyle, title, items, component, emptyText, isLoa
           pb={0}
           className='scroll'
           display='flex'
-          flexDirection='column'
+          flexDirection={isVertical ? 'column' : 'row'}
           style={feedStyle}
         >
           {items.map((item) => (
             <Box
-              key={item.id instanceof Function ? item.id() : item.id}
-              mb={3}
+              key={item.id}
+              style={isVertical ? { marginBottom: '1em' } : { marginRight: '1em' }}
               className='max-width'
             >
               {component(item)}

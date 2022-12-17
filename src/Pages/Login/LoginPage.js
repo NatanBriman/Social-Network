@@ -1,10 +1,10 @@
 import { Grid } from '@mui/material';
+import UsersFeed from './Components/UsersFeed';
 
 const LoginPage = () => {
-  const users = [{}];
   return (
-    <Grid height='100%'>
-      {/* <FriendsFeed style={{ width: '50%', alignSelf: 'flex-start' }} /> */}
+    <Grid height='100vh' className='centered-content'>
+      <UsersFeed paperStyle={{ width: '70%' }} />
     </Grid>
   );
 };
