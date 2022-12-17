@@ -1,4 +1,4 @@
-import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
+import { PersonRemove } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import UserCard from '../../../Components/UserCard';
@@ -24,7 +24,7 @@ const Friend = ({ friend }) => {
   return (
     <UserCard user={friend}>
       <IconButton onClick={removeFriendFromCurrentUser}>
-        <PersonRemoveIcon />
+        <PersonRemove />
       </IconButton>
     </UserCard>
   );

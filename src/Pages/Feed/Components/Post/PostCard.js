@@ -1,9 +1,7 @@
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { Comment, Favorite, FavoriteBorder, Send } from '@mui/icons-material';
 import {
   Avatar,
   Box,
-  Button,
   Card,
   CardActions,
   CardContent,
@@ -32,7 +30,7 @@ const PostCard = ({ post }) => {
 
   const isPostLiked = useMemo(() => likedPostsIds.includes(post.id), [post.id, likedPostsIds]);
   const likeButtonIcon = useMemo(
-    () => (isPostLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />),
+    () => (isPostLiked ? <Favorite /> : <FavoriteBorder />),
     [isPostLiked]
   );
 
@@ -68,8 +66,14 @@ const PostCard = ({ post }) => {
           <IconButton color='error' onClick={() => toggleLikePost(post.id)}>
             {likeButtonIcon}
           </IconButton>
-          <Button variant='outlined'>Share</Button>
-          <Button variant='outlined'>Comment</Button>
+
+          <IconButton color='primary' variant='outlined'>
+            <Send />
+          </IconButton>
+
+          <IconButton color='success' variant='outlined'>
+            <Comment />
+          </IconButton>
         </Box>
       </CardActions>
     </Card>
