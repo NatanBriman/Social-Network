@@ -23,12 +23,16 @@ const RecommendedFriend = ({ friend }) => {
   const handleAddFriend = (friend) => {
     addFriendToCurrentUser(friend);
     removeFriendRecommendation(friend);
-
-    showToast(`${(<em>{friend.username}</em>)} was added successfully!`);
+    console.log(friend.username);
+    showToast(
+      <p>
+        <em>{friend.username}</em> was added successfully!
+      </p>
+    );
   };
 
   return (
-    <UserCard user={friend}>
+    <UserCard user={friend} isRow>
       <IconButton onClick={() => handleAddFriend(friend)}>
         <PersonAddAlt1 />
       </IconButton>

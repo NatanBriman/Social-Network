@@ -24,11 +24,15 @@ const Friend = ({ friend }) => {
     removeFriendFromCurrentUser(friend);
     addFriendRecommendation(friend);
 
-    showToast(`${(<em>{friend.username}</em>)} was removed successfully!`);
+    showToast(
+      <p>
+        <em>{friend.username}</em> was removed successfully!
+      </p>
+    );
   };
 
   return (
-    <UserCard user={friend}>
+    <UserCard user={friend} isRow>
       <IconButton onClick={() => handleRemoveFriend(friend)}>
         <PersonRemove />
       </IconButton>

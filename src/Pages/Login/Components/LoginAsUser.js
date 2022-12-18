@@ -7,8 +7,13 @@ const LoginAsUser = ({ user }) => {
   const handleLogin = (user) => {};
 
   return (
-    <UserCard user={user}>
-      <IconButton onClick={() => handleLogin(user)}>
+    <UserCard
+      user={user}
+      cardStyle={{ height: '16em', width: '12em' }}
+      avatarStyle={{ height: '5em', width: '5em' }}
+      cardClasses='login-user'
+    >
+      <IconButton color='primary' onClick={() => handleLogin(user)}>
         <Login />
       </IconButton>
     </UserCard>

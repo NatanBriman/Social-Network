@@ -9,7 +9,6 @@ const UsersFeed = ({ paperStyle }) => {
   return (
     <Feed
       paperStyle={paperStyle}
-      feedStyle={{ maxWidth: '70wh', minWidth: '30vh', marginBottom: '1em' }}
       title='Users to Login As'
       items={users}
       component={(user) => <LoginAsUser user={user} />}
