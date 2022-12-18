@@ -11,18 +11,13 @@ const ThemeContextProvider = ({ children }) => {
 
   const colorTheme = useMemo(
     () => ({
-      toggleColorTheme: () => {
-        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
-      },
+      toggleColorTheme: () => setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light')),
       currentThemeIcon: () => (theme === 'dark' ? <Brightness7 /> : <Brightness4 />),
     }),
     [theme]
   );
 
-  const currentTheme = useMemo(
-    () => createTheme({ palette: { mode: theme, primary: { main: '#1976d2' } } }),
-    [theme]
-  );
+  const currentTheme = useMemo(() => createTheme({ palette: { mode: theme } }), [theme]);
 
   return (
     <ThemeColorContext.Provider value={colorTheme}>
