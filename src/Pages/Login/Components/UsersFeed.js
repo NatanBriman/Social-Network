@@ -1,10 +1,15 @@
 import api from '../../../Api/Api';
 import Feed from '../../../Components/Feed';
-import useDataFromAPI from '../../../Hooks/useDataFromAPI';
+import useLocalStorageFromAPI from '../../../Hooks/useLocalStorageFromAPI';
+import { LOCAL_STORAGE_KEYS } from '../../../Utils/Constants';
 import LoginAsUser from './LoginAsUser';
 
 const UsersFeed = ({ paperStyle }) => {
-  const [users, setUsers, isLoading] = useDataFromAPI([], api.users.getAllUsers);
+  const [users, setUsers, isLoading] = useLocalStorageFromAPI(
+    [],
+    api.users.getAllUsers,
+    LOCAL_STORAGE_KEYS.users
+  );
 
   return (
     <Feed
