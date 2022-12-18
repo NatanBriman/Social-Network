@@ -1,9 +1,10 @@
 import { Navigate, useRoutes } from 'react-router-dom';
+import AddPostPage from '../Pages/AddPost/AddPostPage';
 import FeedPage from '../Pages/Feed/FeedPage';
 import FriendsPage from '../Pages/Friends/FriendsPage';
 import LoginPage from '../Pages/Login/LoginPage';
-import { FEED_ROUTE, FRIENDS_ROUTE, LOGIN_ROUTE } from '../Utils/Constants';
-import LoginProtectedRoute from './UserProtectedRoute';
+import { ADD_POST_ROUTE, FEED_ROUTE, FRIENDS_ROUTE, LOGIN_ROUTE } from '../Utils/Constants';
+import LoginProtectedRoute from './LoginProtectedRoute';
 
 const PAGES_ROUTES = [
   {
@@ -23,6 +24,12 @@ const PAGES_ROUTES = [
     element: <LoginPage />,
     text: 'Login',
     loginRequired: false,
+  },
+  {
+    path: ADD_POST_ROUTE,
+    element: <AddPostPage />,
+    text: 'Add Post',
+    loginRequired: true,
   },
 ];
 

@@ -64,9 +64,9 @@ const NavBar = ({ routes }) => {
 
         <IconButton onClick={toggleColorTheme}>{currentThemeIcon()}</IconButton>
 
-        <Box className='centered-content-row'>
+        <Box className='centered-content-row' gap={1}>
           {routes.map(({ path, text }) => (
-            <Box key={path} ml={1}>
+            <Box key={path}>
               <Button onClick={() => navigate(path)}>
                 <Typography
                   style={{ textDecoration: isCurrentRoute(path) && 'underline' }}

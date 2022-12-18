@@ -48,7 +48,14 @@ const PostCard = ({ post }) => {
 
         <PopUpDialog
           title='Post Image'
-          dialogContent={<img className='shadow rounded' src={post.image} alt='Post Image' />}
+          dialogContent={
+            <img
+              style={{ maxHeight: '40em', maxWidth: '40em' }}
+              className='shadow rounded'
+              src={post.image}
+              alt='Post Image'
+            />
+          }
         >
           <CardMedia
             className='clickable rounded'

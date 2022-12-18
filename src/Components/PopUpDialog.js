@@ -10,7 +10,7 @@ const PopUpDialog = ({ children, dialogContent, title }) => {
     <>
       <div onClick={toggleIsShowModal}>{children}</div>
 
-      <Dialog open={isShowDialog} onClose={handleClose}>
+      <Dialog maxWidth='md' open={isShowDialog} onClose={handleClose}>
         <DialogTitle textAlign='center'>{title}</DialogTitle>
         <DialogContent>{dialogContent}</DialogContent>
         <Box className='centered-content-row' mb={1}>
