@@ -1,58 +1,85 @@
-import { AppBar, Avatar, Box, Button, Grid, IconButton, Typography } from '@mui/material';
-import { useContext } from 'react';
-import { useSelector } from 'react-redux';
+import { Logout } from '@mui/icons-material';
+import { AppBar, Avatar, Box, Button, IconButton, Typography } from '@mui/material';
+import { useContext, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { userSelector } from '../Redux/Features/User/UserSlice';
-import { ColorModeContext } from '../Theme/ThemeContext';
+import { userActions, userSelector } from '../Redux/Features/User/UserSlice';
+import { ThemeColorContext } from '../Theme/ThemeContext';
+import { LOGIN_ROUTE } from '../Utils/Constants';
+import DropDownMenu from './DropDownMenu';
 
 const NavBar = ({ routes }) => {
-  const user = useSelector(userSelector);
+  const { username, image } = useSelector(userSelector);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const { toggleColorMode, currentThemeIcon } = useContext(ColorModeContext);
-  const currentRoute = useLocation().pathname;
-  const isCurrentRoute = (route) => route === currentRoute;
+  const [userMenuAnchorElement, setUserMenuAnchorElement] = useState(null);
+  const handleOpenUserMenu = ({ currentTarget }) => setUserMenuAnchorElement(currentTarget);
+  const handleCloseUserMenu = () => setUserMenuAnchorElement(null);
+
+  const { toggleColorTheme, currentThemeIcon } = useContext(ThemeColorContext);
+  const { pathname } = useLocation();
+  const isCurrentRoute = (route) => route === pathname;
+
+  const settings = [
+    {
+      text: 'Logout',
+      icon: <Logout />,
+      action: () => {
+        const { logout } = userActions;
+
+        dispatch(logout());
+        navigate(LOGIN_ROUTE);
+      },
+    },
+  ];
 
   return (
-    <AppBar color='default' position='sticky'>
-      <Grid m={1} display='flex' justifyContent='space-between'>
-        <Grid display='flex' alignItems='center'>
+    <AppBar position='sticky'>
+      <Box m={1} className='between-spaced-content'>
+        <Box className='evenly-spaced-content'>
           <Avatar
-            className='shadow'
+            className='shadow clickable'
             style={{ width: '3em', height: '3em' }}
-            alt={user.username}
-            src={user.image}
+            alt={username}
+            src={image}
+            onClick={handleOpenUserMenu}
+          />
+
+          <DropDownMenu
+            items={settings}
+            anchorElement={userMenuAnchorElement}
+            open={Boolean(userMenuAnchorElement)}
+            handleCloseMenu={handleCloseUserMenu}
           />
 
           <Box ml={2}>
             <Typography variant='body1'>Hey,</Typography>
 
             <Typography variant='h5'>
-              <strong>{user.username}</strong>
+              <strong>{username}</strong>
             </Typography>
           </Box>
+        </Box>
 
-          <Box ml={1}>
-            <IconButton onClick={toggleColorMode}>{currentThemeIcon()}</IconButton>
-          </Box>
-        </Grid>
+        <IconButton onClick={toggleColorTheme}>{currentThemeIcon()}</IconButton>
 
-        <Grid className='centered-content'>
+        <Box className='centered-content-row'>
           {routes.map(({ path, text }) => (
             <Box key={path} ml={1}>
-              <Button
-                onClick={() => navigate(path)}
-                style={{
-                  fontSize: '1.5rem',
-                  textDecoration: isCurrentRoute(path) && 'underline',
-                }}
-              >
-                {text}
+              <Button onClick={() => navigate(path)}>
+                <Typography
+                  style={{ textDecoration: isCurrentRoute(path) && 'underline' }}
+                  color='Menu'
+                  variant='h5'
+                >
+                  {text}
+                </Typography>
               </Button>
             </Box>
           ))}
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
     </AppBar>
   );
 };

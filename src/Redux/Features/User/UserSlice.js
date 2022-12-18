@@ -1,18 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { initialUser, updateUserInLocalStorage } from './UserInLocalStorage';
+import {
+  initialUser,
+  updateUserInAllUsersInLocalStorage,
+  updateUserInLocalStorage,
+} from './UserInLocalStorage';
 
 const userSlice = createSlice({
   name: 'UserSlice',
   initialState: { user: initialUser },
   reducers: {
-    setUser: (state, action) => {
+    login: (state, action) => {
       const user = action.payload;
 
       state.user = user;
       updateUserInLocalStorage(state.user);
     },
     logout: (state) => {
-      state.user = undefined;
+      updateUserInAllUsersInLocalStorage(state.user);
+      state.user = {};
+
       updateUserInLocalStorage(state.user);
     },
     addLikedPost: (state, action) => {
@@ -43,6 +49,22 @@ const userSlice = createSlice({
       const updatedFriends = state.user.friends.filter((friend) => friend.id !== friendToRemove.id);
 
       state.user.friends = updatedFriends;
+      updateUserInLocalStorage(state.user);
+    },
+    addRecommendedFriend: (state, action) => {
+      const recommendedFriend = action.payload;
+      const updatedRecommendedFriends = [...state.user.recommendedFriends, recommendedFriend];
+
+      state.user.recommendedFriends = updatedRecommendedFriends;
+      updateUserInLocalStorage(state.user);
+    },
+    removeRecommendedFriend: (state, action) => {
+      const recommendedFriendToRemove = action.payload;
+      const updatedRecommendedFriends = state.user.recommendedFriends.filter(
+        (recommendedFriend) => recommendedFriend.id !== recommendedFriendToRemove.id
+      );
+
+      state.user.recommendedFriends = updatedRecommendedFriends;
       updateUserInLocalStorage(state.user);
     },
   },

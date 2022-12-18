@@ -1,12 +1,16 @@
+import { useLocation } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import NavBar from './Components/NavBar';
-import RouterView from './Router/Router';
-import { ROUTES } from './Utils/Constants';
+import RouterView, { loginRequiredRoutes } from './Router/Router';
+import { LOGIN_ROUTE } from './Utils/Constants';
 
 const App = () => {
+  const { pathname } = useLocation();
+  const isLoginPage = pathname === LOGIN_ROUTE;
+
   return (
     <>
-      <NavBar routes={ROUTES} />
+      {!isLoginPage && <NavBar routes={loginRequiredRoutes} />}
 
       <RouterView />
 
@@ -15,10 +19,7 @@ const App = () => {
         position='bottom-left'
         pauseOnHover={false}
         draggable={false}
-        limit={5}
         theme='dark'
-        className='text-end fs-4'
-        style={{ width: '30%' }}
       />
     </>
   );

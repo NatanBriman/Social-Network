@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useMemo } from 'react';
 import useDataFromAPI from './useDataFromAPI';
 
 const useLocalStorageFromAPI = (initialValue, requestDataFromAPI, key) => {
@@ -21,7 +21,7 @@ const useLocalStorageFromAPI = (initialValue, requestDataFromAPI, key) => {
     initializeValueInLocalStorage
   );
 
-  useEffect(() => {
+  useMemo(() => {
     const stringValue = JSON.stringify(data);
 
     localStorage.setItem(key, stringValue);

@@ -8,13 +8,23 @@ import { showToast } from '../../../Utils/Helpers';
 const Friend = ({ friend }) => {
   const dispatch = useDispatch();
 
-  const removeFriendFromCurrentUser = () => {
+  const removeFriendFromCurrentUser = (friend) => {
     const { removeFriend } = userActions;
 
     dispatch(removeFriend(friend));
+  };
+
+  const addFriendRecommendation = (friend) => {
+    const { addRecommendedFriend } = userActions;
+
+    dispatch(addRecommendedFriend(friend));
+  };
+
+  const handleRemoveFriend = (friend) => {
+    removeFriendFromCurrentUser(friend);
+    addFriendRecommendation(friend);
 
     showToast(
-      'success',
       <p>
         <em>{friend.username}</em> was removed successfully!
       </p>
@@ -22,8 +32,8 @@ const Friend = ({ friend }) => {
   };
 
   return (
-    <UserCard user={friend}>
-      <IconButton onClick={removeFriendFromCurrentUser}>
+    <UserCard user={friend} isRow>
+      <IconButton onClick={() => handleRemoveFriend(friend)}>
         <PersonRemove />
       </IconButton>
     </UserCard>
