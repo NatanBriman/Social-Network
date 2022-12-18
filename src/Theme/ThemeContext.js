@@ -3,41 +3,35 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { createContext, useMemo, useState } from 'react';
 
-export const ColorModeContext = createContext();
-const toggleMode = (prevMode) => (prevMode === 'light' ? 'dark' : 'light');
-const getCurrentThemeIcon = (mode) => (mode === 'dark' ? <Brightness7 /> : <Brightness4 />);
+export const ThemeColorContext = createContext();
+const INITIAL_THEME_COLOR = 'dark';
 
 const ThemeContextProvider = ({ children }) => {
-  const [mode, setMode] = useState('dark');
+  const [theme, setTheme] = useState(INITIAL_THEME_COLOR);
 
-  const colorMode = useMemo(
+  const colorTheme = useMemo(
     () => ({
-      toggleColorMode: () => {
-        setMode(toggleMode);
+      toggleColorTheme: () => {
+        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
       },
-      currentThemeIcon: () => getCurrentThemeIcon(mode),
+      currentThemeIcon: () => (theme === 'dark' ? <Brightness7 /> : <Brightness4 />),
     }),
-    [mode]
+    [theme]
   );
 
-  const theme = useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode,
-        },
-      }),
-    [mode]
+  const currentTheme = useMemo(
+    () => createTheme({ palette: { mode: theme, primary: { main: '#1976d2' } } }),
+    [theme]
   );
 
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
+    <ThemeColorContext.Provider value={colorTheme}>
+      <ThemeProvider theme={currentTheme}>
         <CssBaseline />
 
         {children}
       </ThemeProvider>
-    </ColorModeContext.Provider>
+    </ThemeColorContext.Provider>
   );
 };
 
