@@ -1,18 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { initialUser, updateUserInLocalStorage } from './UserInLocalStorage';
+import {
+  initialUser,
+  updateUserInAllUsersInLocalStorage,
+  updateUserInLocalStorage,
+} from './UserInLocalStorage';
 
 const userSlice = createSlice({
   name: 'UserSlice',
   initialState: { user: initialUser },
   reducers: {
-    setUser: (state, action) => {
+    login: (state, action) => {
       const user = action.payload;
 
       state.user = user;
       updateUserInLocalStorage(state.user);
     },
     logout: (state) => {
-      state.user = undefined;
+      updateUserInAllUsersInLocalStorage(state.user);
+      state.user = {};
+
       updateUserInLocalStorage(state.user);
     },
     addLikedPost: (state, action) => {

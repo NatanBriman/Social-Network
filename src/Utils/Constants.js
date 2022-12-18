@@ -213,5 +213,6 @@ export const POSTS = [
 export const LOCAL_STORAGE_KEYS = {
   posts: 'POSTS',
   recommendedFriends: 'RECOMMENDED_FRIENDS',
-  user: 'USER',
+  connectedUser: 'CONNECTED_USER',
+  users: 'USERS',
 };

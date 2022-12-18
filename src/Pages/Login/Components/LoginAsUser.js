@@ -1,10 +1,22 @@
 import { Login } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import UserCard from '../../../Components/UserCard';
+import { userActions } from '../../../Redux/Features/User/UserSlice';
+import { FEED_ROUTE } from '../../../Utils/Constants';
 
 const LoginAsUser = ({ user }) => {
-  const handleLogin = (user) => {};
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogin = (user) => {
+    const { login } = userActions;
+
+    dispatch(login(user));
+    navigate(FEED_ROUTE);
+  };
 
   return (
     <UserCard
