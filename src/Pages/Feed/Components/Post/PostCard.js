@@ -47,10 +47,11 @@ const PostCard = ({ post }) => {
         </Typography>
 
         <PopUpDialog
+          style={{ maxHeight: '80vh', maxWidth: '70vw' }}
           title='Post Image'
           dialogContent={
             <img
-              style={{ maxHeight: '40em', maxWidth: '40em' }}
+              style={{ maxHeight: '60vh', maxWidth: '70vw' }}
               className='shadow rounded'
               src={post.image}
               alt='Post Image'
