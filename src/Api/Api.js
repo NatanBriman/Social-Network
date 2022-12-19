@@ -1,5 +1,5 @@
 import uuid from 'react-uuid';
-import { createPost } from '../Pages/AddPost/Components/AddPostForm';
+import { createPost } from '../Pages/AddPost/AddPostPage';
 
 const getRecommendedFriends = (userId) => {
   const otherUsers = USERS.filter((recommendedUser) => recommendedUser.id !== userId);

@@ -1,40 +1,13 @@
 import { Box, Button, Divider, Paper, TextField, Typography } from '@mui/material';
-import { useRef } from 'react';
-import { useSelector } from 'react-redux';
-import uuid from 'react-uuid';
-import useLocalStorage from '../../../Hooks/useLocalStorage';
-import { userSelector } from '../../../Redux/Features/User/UserSlice';
-import { LOCAL_STORAGE_KEYS } from '../../../Utils/Constants';
-import { showToast } from '../../../Utils/Helpers';
 
-export const createPost = (authorImage, authorUsername, description, postImage) => {
-  return {
-    id: uuid(),
-    author: { username: authorUsername, image: authorImage },
-    description,
-    image: postImage,
-    date: new Date(),
-  };
-};
-
-const AddPostForm = ({ paperStyle }) => {
-  const [posts, setPosts] = useLocalStorage(LOCAL_STORAGE_KEYS.posts, []);
-  const { username, image } = useSelector(userSelector);
-  const descriptionRef = useRef();
-  const imageRef = useRef();
-
-  const handleAddPost = () => {
-    const newPost = createPost(
-      image,
-      username,
-      descriptionRef.current.value,
-      imageRef.current.value
-    );
-
-    setPosts((posts) => [...posts, newPost]);
-    showToast('Your post was added successfully!');
-  };
-
+const AddPostForm = ({
+  handleAddPost,
+  description,
+  setDescription,
+  image,
+  setImage,
+  paperStyle,
+}) => {
   return (
     <Paper elevation={24} className='shadow rounded' style={paperStyle}>
       <Typography className='centered-content-row' variant='h5' p={1} pb={0} height='3rem'>
@@ -45,14 +18,24 @@ const AddPostForm = ({ paperStyle }) => {
 
       <Box className='centered-content-column' p={2} gap={2}>
         <TextField
+          required
           fullWidth
           multiline
-          inputRef={descriptionRef}
           label='Description'
+          variant='outlined'
+          value={description}
           helperText="What's on your mind?"
+          onChange={({ target: { value } }) => setDescription(value)}
         />
 
-        <TextField fullWidth inputRef={imageRef} label='Image' helperText='Upload image URL' />
+        <TextField
+          required
+          fullWidth
+          value={image}
+          onChange={({ target: { value } }) => setImage(value)}
+          label='Image'
+          helperText='Upload image URL'
+        />
 
         <Box mt={2}>
           <Button onClick={handleAddPost} variant='outlined' color='success'>
