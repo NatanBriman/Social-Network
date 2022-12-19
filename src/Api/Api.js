@@ -1,4 +1,5 @@
 import uuid from 'react-uuid';
+import { createPost } from '../Pages/AddPost/Components/AddPostForm';
 
 const getRecommendedFriends = (userId) => {
   const otherUsers = USERS.filter((recommendedUser) => recommendedUser.id !== userId);
@@ -49,58 +50,12 @@ const USERS = [
 USERS.map(addRecommendedFriends);
 
 const POSTS = [
-  {
-    id: 'bc050084-fa9b-19c9-a16b-9e5b8277bab1',
-    author: {
-      id: 1,
-      username: 'Example Name',
-      image:
-        'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600',
-    },
-    date: new Date(),
-    image:
-      'https://www.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpg',
-    description: 'This is the description...',
-  },
-  {
-    id: 'bc050054-fa9b-19c9-a16b-9e5b8277bab1',
-    author: {
-      id: 1,
-      username: 'Example Name',
-      image:
-        'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600',
-    },
-    date: new Date(),
-    image:
-      'https://www.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpg',
-    description: 'This is the description...',
-  },
-  {
-    id: 'bc052084-fa9b-19c9-a16b-9e5b8277bab1',
-    author: {
-      id: 1,
-      username: 'Example Name',
-      image:
-        'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600',
-    },
-    date: new Date(),
-    image:
-      'https://www.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpg',
-    description: 'This is the description...',
-  },
-  {
-    id: 'bc150084-fa9b-19c9-a16b-9e5b8277bab1',
-    author: {
-      id: 1,
-      username: 'Example Name',
-      image:
-        'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600',
-    },
-    date: new Date(),
-    image:
-      'https://www.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpg',
-    description: 'This is the description...',
-  },
+  createPost(
+    'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600',
+    'Test 1',
+    'Description test',
+    'https://www.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpg'
+  ),
 ];
 
 const API_REQUEST_DELAY = 2000;

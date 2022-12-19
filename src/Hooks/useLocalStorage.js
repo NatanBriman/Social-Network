@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 const useLocalStorage = (key, initialValue) => {
   const [value, setValue] = useState(() => {
@@ -7,8 +7,7 @@ const useLocalStorage = (key, initialValue) => {
     return jsonValue != null ? JSON.parse(jsonValue) : initialValue;
   });
 
-  // Maybe use useEffect instead of useMemo
-  useEffect(() => {
+  useMemo(() => {
     const stringValue = JSON.stringify(value);
 
     localStorage.setItem(key, stringValue);

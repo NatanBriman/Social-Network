@@ -5,8 +5,9 @@ import uuid from 'react-uuid';
 import useLocalStorage from '../../../Hooks/useLocalStorage';
 import { userSelector } from '../../../Redux/Features/User/UserSlice';
 import { LOCAL_STORAGE_KEYS } from '../../../Utils/Constants';
+import { showToast } from '../../../Utils/Helpers';
 
-const createPost = (authorImage, authorUsername, description, postImage) => {
+export const createPost = (authorImage, authorUsername, description, postImage) => {
   return {
     id: uuid(),
     author: { username: authorUsername, image: authorImage },
@@ -31,6 +32,7 @@ const AddPostForm = ({ paperStyle }) => {
     );
 
     setPosts((posts) => [...posts, newPost]);
+    showToast('Your post was added successfully!');
   };
 
   return (
@@ -43,13 +45,14 @@ const AddPostForm = ({ paperStyle }) => {
 
       <Box className='centered-content-column' p={2} gap={2}>
         <TextField
+          fullWidth
           multiline
           inputRef={descriptionRef}
           label='Description'
           helperText="What's on your mind?"
         />
 
-        <TextField inputRef={imageRef} label='Image' helperText='Upload image URL' />
+        <TextField fullWidth inputRef={imageRef} label='Image' helperText='Upload image URL' />
 
         <Box mt={2}>
           <Button onClick={handleAddPost} variant='outlined' color='success'>

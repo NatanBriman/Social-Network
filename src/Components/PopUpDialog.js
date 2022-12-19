@@ -1,7 +1,7 @@
 import { Box, Button, Dialog, DialogContent, DialogTitle } from '@mui/material';
 import { useState } from 'react';
 
-const PopUpDialog = ({ children, dialogContent, title }) => {
+const PopUpDialog = ({ style, children, dialogContent, title }) => {
   const [isShowDialog, setIsShowDialog] = useState(false);
   const toggleIsShowModal = () => setIsShowDialog((isShowModal) => !isShowModal);
   const handleClose = () => setIsShowDialog(false);
@@ -10,9 +10,9 @@ const PopUpDialog = ({ children, dialogContent, title }) => {
     <>
       <div onClick={toggleIsShowModal}>{children}</div>
 
-      <Dialog maxWidth='md' open={isShowDialog} onClose={handleClose}>
+      <Dialog maxWidth='lg' open={isShowDialog} onClose={handleClose}>
         <DialogTitle textAlign='center'>{title}</DialogTitle>
-        <DialogContent>{dialogContent}</DialogContent>
+        <DialogContent style={style}>{dialogContent}</DialogContent>
         <Box className='centered-content-row' mb={1}>
           <Button variant='outlined' onClick={handleClose} autoFocus>
             Close
