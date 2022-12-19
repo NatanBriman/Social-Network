@@ -1,12 +1,12 @@
-import { Grid } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import uuid from 'react-uuid';
+import Form from '../../Components/Form';
 import useLocalStorage from '../../Hooks/useLocalStorage';
 import { userSelector } from '../../Redux/Features/User/UserSlice';
 import { LOCAL_STORAGE_KEYS } from '../../Utils/Constants';
 import { showToast } from '../../Utils/Helpers';
-import AddPostForm from './Components/AddPostForm';
 import AddPostPreview from './Components/AddPostPreview';
 
 export const createPost = (authorImage, authorUsername, description, postImage) => {
@@ -19,9 +19,21 @@ export const createPost = (authorImage, authorUsername, description, postImage) 
   };
 };
 
+const createFormInput = (
+  value,
+  onChange,
+  label,
+  helperText,
+  required = false,
+  fullWidth = false,
+  multiline = false
+) => {
+  return { value, onChange, label, helperText, required, fullWidth, multiline };
+};
+
 const AddPostPage = () => {
-  const [posts, setPosts] = useLocalStorage(LOCAL_STORAGE_KEYS.posts, []);
   const { username, image } = useSelector(userSelector);
+  const [posts, setPosts] = useLocalStorage(LOCAL_STORAGE_KEYS.posts, []);
   const [description, setDescription] = useState('');
   const [postImage, setPostImage] = useState('');
   // TODO: Handle submit error!
@@ -29,6 +41,26 @@ const AddPostPage = () => {
     setDescription('');
     setPostImage('');
   };
+
+  const formInputs = [
+    createFormInput(
+      description,
+      ({ target: { value } }) => setDescription(value),
+      'Description',
+      "What's on your mind?",
+      true,
+      true,
+      true
+    ),
+    createFormInput(
+      postImage,
+      ({ target: { value } }) => setPostImage(value),
+      'Image',
+      'Upload image URL',
+      true,
+      true
+    ),
+  ];
 
   const handleAddPost = () => {
     const newPost = createPost(image, username, description, postImage);
@@ -42,14 +74,11 @@ const AddPostPage = () => {
     <Grid my={2} className='evenly-spaced-content'>
       <AddPostPreview style={{ width: '40vw' }} description={description} postImage={postImage} />
 
-      <AddPostForm
-        description={description}
-        image={postImage}
-        handleAddPost={handleAddPost}
-        setDescription={setDescription}
-        setImage={setPostImage}
-        paperStyle={{ width: '40%' }}
-      />
+      <Form paperStyle={{ width: '40%' }} title='Create New Post' formInputs={formInputs}>
+        <Button onClick={handleAddPost} variant='outlined' color='success'>
+          Add Post
+        </Button>
+      </Form>
     </Grid>
   );
 };
