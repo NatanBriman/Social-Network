@@ -26,7 +26,7 @@ const RecommendedFriend = ({ friend }) => {
     console.log(friend.username);
     showToast(
       <p>
-        <em>{friend.username}</em> was added successfully!
+        <em>{friend.username}</em> is now your friend!
       </p>
     );
   };

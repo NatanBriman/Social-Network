@@ -26,7 +26,7 @@ const Friend = ({ friend }) => {
 
     showToast(
       <p>
-        <em>{friend.username}</em> was removed successfully!
+        <em>{friend.username}</em> is no longer your friend!
       </p>
     );
   };
