@@ -1,7 +1,6 @@
 import {
   Avatar,
   Box,
-  Button,
   Card,
   CardActions,
   CardContent,
@@ -12,6 +11,9 @@ import {
 } from '@mui/material';
 import PopUpDialog from '../../../../Components/PopUpDialog';
 import ReadMore from '../../../../Components/ReadMore';
+import CommentOnPostButton from './Buttons/CommentOnPostButton';
+import LikePostButton from './Buttons/LikePostButton';
+import SharePostButton from './Buttons/SharePostButton';
 
 const PostCard = ({ post }) => {
   return (
@@ -27,8 +29,16 @@ const PostCard = ({ post }) => {
         </Typography>
 
         <PopUpDialog
+          style={{ maxHeight: '80vh', maxWidth: '70vw' }}
           title='Post Image'
-          dialogContent={<img className='shadow rounded' src={post.image} alt='Post Image' />}
+          dialogContent={
+            <img
+              style={{ maxHeight: '60vh', maxWidth: '70vw' }}
+              className='shadow rounded'
+              src={post.image}
+              alt='Post Image'
+            />
+          }
         >
           <CardMedia
             className='clickable rounded'
@@ -43,9 +53,11 @@ const PostCard = ({ post }) => {
 
       <CardActions>
         <Box className='max-width' display='flex' justifyContent='flex-end' gap={1}>
-          <Button variant='outlined'>Like</Button>
-          <Button variant='outlined'>Share</Button>
-          <Button variant='outlined'>Comment</Button>
+          <LikePostButton post={post} />
+
+          <SharePostButton post={post} />
+
+          <CommentOnPostButton post={post} />
         </Box>
       </CardActions>
     </Card>

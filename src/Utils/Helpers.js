@@ -1,7 +1,10 @@
 import { toast } from 'react-toastify';
 
-export const removeObjectFromArrayById = (array, objectToRemove) =>
-  array.filter(({ id }) => id !== objectToRemove.id);
+export const showToast = (message, type = 'success') => toast(message, { type });
 
-// TODO: Use RambdaJs!!
-export const showToast = (type, message) => toast(message, { type });
+export const filterByNotId = (array, id, idPath = 'id') =>
+  array.filter((item) => item[idPath] !== id);
+export const filterById = (array, id, idPath = 'id') => array.filter((item) => item[idPath] === id);
+export const findById = (array, id) => array.find((item) => item.id === id);
+
+export const getExtendedArray = (array, item) => [...array, item];

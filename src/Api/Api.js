@@ -1,6 +1,66 @@
-import { INITIAL_RECOMMENDED_FRIENDS, POSTS } from '../Utils/Constants';
+import uuid from 'react-uuid';
+import { createPost } from '../Pages/AddPost/AddPostPage';
+import { filterByNotId } from '../Utils/Helpers';
 
-const API_REQUEST_DELAY = 200;
+const getRecommendedFriends = (userId) => {
+  const otherUsers = filterByNotId(USERS, userId);
+
+  const usersDTO = otherUsers.map(({ id, username, image }) => {
+    return { id, username, image };
+  });
+
+  return usersDTO;
+};
+const addRecommendedFriends = (user) => (user.recommendedFriends = getRecommendedFriends(user.id));
+
+const createUser = (username, password, image) => {
+  return {
+    id: uuid(),
+    username,
+    password,
+    image,
+    friends: [],
+    likedPostsIds: [],
+    joinedDate: Date.now(),
+    sharedPosts: [],
+  };
+};
+
+const USERS = [
+  createUser(
+    'Natan Briman',
+    'Natan Password',
+    'https://media.licdn.com/dms/image/D4E35AQGK4ozVskWbmQ/profile-framedphoto-shrink_400_400/0/1634383529380?e=1672149600&v=beta&t=si3zxbYxhnwoUEcSj-TWqKbstAEUlHkJtEUfVbTrV3w'
+  ),
+
+  createUser(
+    'Rotem Avraham',
+    'Rotem Password',
+    'https://images.pexels.com/photos/1559486/pexels-photo-1559486.jpeg?auto=compress&cs=tinysrgb&w=600'
+  ),
+  createUser(
+    'Maayan Razi',
+    'Maayan Password',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3WEmfJCME77ZGymWrlJkXRv5bWg9QQmQEzw&usqp=CAU'
+  ),
+  createUser(
+    'Ruti Sinay',
+    'Ruti Password',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeik6d5EHLTi89m_CKLXyShylk4L92YflpJQ&usqp=CAU'
+  ),
+];
+USERS.map(addRecommendedFriends);
+
+const POSTS = [
+  createPost(
+    'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600',
+    'Test 1',
+    'Description test',
+    'https://www.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpg'
+  ),
+];
+
+const API_REQUEST_DELAY = 2000;
 
 const api = {
   posts: {
@@ -12,11 +72,11 @@ const api = {
       });
     },
   },
-  recommendedFriends: {
-    async getAllRecommendedFriends() {
+  users: {
+    async getAllUsers() {
       return new Promise((resolve) => {
         setTimeout(() => {
-          resolve(INITIAL_RECOMMENDED_FRIENDS);
+          resolve(USERS);
         }, API_REQUEST_DELAY);
       });
     },

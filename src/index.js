@@ -5,17 +5,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import App from './App';
 import './index.css';
 import store from './Redux/Store';
-import ThemeContext from './Theme/ThemeContext';
+import ThemeContextProvider from './Theme/ThemeContext';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 
 root.render(
-  <ThemeContext>
+  <ThemeContextProvider>
     <BrowserRouter>
       <Provider store={store}>
         <App />
       </Provider>
     </BrowserRouter>
-  </ThemeContext>
+  </ThemeContextProvider>
 );

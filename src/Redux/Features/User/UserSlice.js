@@ -1,48 +1,75 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { initialUser, updateUserInLocalStorage } from './UserInLocalStorage';
+import { filterByNotId, getExtendedArray } from '../../../Utils/Helpers';
+import {
+  initialUser,
+  updateUserInAllUsersInLocalStorage,
+  updateUserInLocalStorage,
+} from './UserInLocalStorage';
 
 const userSlice = createSlice({
   name: 'UserSlice',
   initialState: { user: initialUser },
   reducers: {
-    setUser: (state, action) => {
+    login: (state, action) => {
       const user = action.payload;
 
       state.user = user;
       updateUserInLocalStorage(state.user);
     },
     logout: (state) => {
-      state.user = undefined;
+      updateUserInAllUsersInLocalStorage(state.user);
+      state.user = {};
+
       updateUserInLocalStorage(state.user);
     },
     addLikedPost: (state, action) => {
-      const likedPostToAdd = action.payload;
-      const updatedLikedPosts = [...state.user.likedPosts, likedPostToAdd];
+      const likedPostIdToAdd = action.payload;
+      const updatedLikedPostsIds = getExtendedArray(state.user.likedPostsIds, likedPostIdToAdd);
 
-      state.user.likedPosts = updatedLikedPosts;
+      state.user.likedPostsIds = updatedLikedPostsIds;
       updateUserInLocalStorage(state.user);
     },
     removeLikedPost: (state, action) => {
-      const likedPostToRemove = action.payload;
-      const updatedLikedPosts = state.user.likedPosts.filter(
-        (post) => post.id !== likedPostToRemove.id
+      const likedPostIdToRemove = action.payload;
+      const updatedLikedPostsIds = state.user.likedPostsIds.filter(
+        (likedPostId) => likedPostId !== likedPostIdToRemove
       );
 
-      state.user.likedPosts = updatedLikedPosts;
+      state.user.likedPostsIds = updatedLikedPostsIds;
       updateUserInLocalStorage(state.user);
     },
     addFriend: (state, action) => {
       const friendToAdd = action.payload;
-      const updatedFriends = [...state.user.friends, friendToAdd];
+      const updatedFriends = getExtendedArray(state.user.friends, friendToAdd);
 
       state.user.friends = updatedFriends;
       updateUserInLocalStorage(state.user);
     },
     removeFriend: (state, action) => {
       const friendToRemove = action.payload;
-      const updatedFriends = state.user.friends.filter((friend) => friend.id !== friendToRemove.id);
+      const updatedFriends = filterByNotId(state.user.friends, friendToRemove.id);
 
       state.user.friends = updatedFriends;
+      updateUserInLocalStorage(state.user);
+    },
+    addRecommendedFriend: (state, action) => {
+      const recommendedFriend = action.payload;
+      const updatedRecommendedFriends = getExtendedArray(
+        state.user.recommendedFriends,
+        recommendedFriend
+      );
+
+      state.user.recommendedFriends = updatedRecommendedFriends;
+      updateUserInLocalStorage(state.user);
+    },
+    removeRecommendedFriend: (state, action) => {
+      const recommendedFriendToRemove = action.payload;
+      const updatedRecommendedFriends = filterByNotId(
+        state.user.recommendedFriends,
+        recommendedFriendToRemove.id
+      );
+
+      state.user.recommendedFriends = updatedRecommendedFriends;
       updateUserInLocalStorage(state.user);
     },
   },

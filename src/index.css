@@ -4,17 +4,12 @@
   --rounded-border: 10px;
 }
 
-a {
-  text-decoration: none;
-  text-transform: none;
+#root {
+  height: 100vh;
 }
 
 .MuiBox-root button {
   text-transform: none;
-}
-
-#root {
-  height: 100%;
 }
 
 .MuiBox-root .shadow,
@@ -52,8 +47,55 @@ a {
   width: 100%;
 }
 
-.centered-content {
+.max-height {
+  height: 100%;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.centered-content-row {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.centered-content-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column !important;
+}
+
+.evenly-spaced-content {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.between-spaced-content {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.login-user .MuiCardHeader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.login-user .MuiCardHeader-avatar {
+  margin-right: 0;
 }
