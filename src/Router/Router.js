@@ -6,36 +6,20 @@ import LoginPage from '../Pages/Login/LoginPage';
 import { ADD_POST_ROUTE, FEED_ROUTE, FRIENDS_ROUTE, LOGIN_ROUTE } from '../Utils/Constants';
 import LoginProtectedRoute from './LoginProtectedRoute';
 
+const createRoute = (path, element, text, loginRequired = true) => {
+  return { path, element, text, loginRequired };
+};
+
 const PAGES_ROUTES = [
-  {
-    path: FEED_ROUTE,
-    element: <FeedPage />,
-    text: 'Feed',
-    loginRequired: true,
-  },
-  {
-    path: FRIENDS_ROUTE,
-    element: <FriendsPage />,
-    text: 'Friends',
-    loginRequired: true,
-  },
-  {
-    path: LOGIN_ROUTE,
-    element: <LoginPage />,
-    text: 'Login',
-    loginRequired: false,
-  },
-  {
-    path: ADD_POST_ROUTE,
-    element: <AddPostPage />,
-    text: 'Add Post',
-    loginRequired: true,
-  },
+  createRoute(FEED_ROUTE, <FeedPage />, 'Feed'),
+  createRoute(FRIENDS_ROUTE, <FriendsPage />, 'Friends'),
+  createRoute(ADD_POST_ROUTE, <AddPostPage />, 'Add Post'),
+  createRoute(LOGIN_ROUTE, <LoginPage />, 'Login', false),
 ];
 
 const SPECIAL_ROUTES = [
-  { path: '/', element: <Navigate to={LOGIN_ROUTE} /> },
-  { path: '*', element: <Navigate to={LOGIN_ROUTE} /> },
+  createRoute('/', <Navigate to={LOGIN_ROUTE} />),
+  createRoute('*', <Navigate to={LOGIN_ROUTE} />),
 ];
 
 const protectRoutes = (routes, propertyToProtectBy, ProtectedRoute) =>

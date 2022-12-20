@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import NavBar from './Components/NavBar';
+import NavBar from './Components/NavBar/NavBar';
 import RouterView, { loginRequiredRoutes } from './Router/Router';
 import { LOGIN_ROUTE } from './Utils/Constants';
 

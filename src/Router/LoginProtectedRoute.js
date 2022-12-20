@@ -6,8 +6,9 @@ import { showToast } from '../Utils/Helpers';
 
 const LoginProtectedRoute = ({ children }) => {
   const user = useSelector(userSelector);
+  const isUserExists = Object.keys(user).length !== 0;
 
-  if (Object.keys(user).length === 0) {
+  if (!isUserExists) {
     showToast('Please login first', 'warning');
 
     return <Navigate to={LOGIN_ROUTE} />;

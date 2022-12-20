@@ -6,7 +6,7 @@ import DropDownMenu, { createMenuItem } from '../../../../../Components/DropDown
 import useLocalStorage from '../../../../../Hooks/useLocalStorage';
 import { userSelector } from '../../../../../Redux/Features/User/UserSlice';
 import { LOCAL_STORAGE_KEYS } from '../../../../../Utils/Constants';
-import { filterByNotId, findById, showToast } from '../../../../../Utils/Helpers';
+import { filterByNotId, findById, getExtendedArray, showToast } from '../../../../../Utils/Helpers';
 
 const SharePostButton = ({ post }) => {
   const [users, setUsers] = useLocalStorage(LOCAL_STORAGE_KEYS.users, []);
@@ -15,10 +15,11 @@ const SharePostButton = ({ post }) => {
   const [shareMenuAnchorElement, setShareMenuAnchorElement] = useState(null);
   const handleOpenShareMenu = ({ currentTarget }) => setShareMenuAnchorElement(currentTarget);
   const handleCloseShareMenu = () => setShareMenuAnchorElement(null);
+  const isFriendsExists = friends.length > 0;
 
   const shareMenuItems = useMemo(
     () =>
-      friends.length > 0
+      isFriendsExists
         ? friends.map(({ id, username, image }) =>
             createMenuItem(username, <Avatar className='shadow' alt={username} src={image} />, () =>
               sharePost(post, id)
@@ -30,11 +31,11 @@ const SharePostButton = ({ post }) => {
 
   const sharePost = (post, userIdToShare) => {
     const userToShare = findById(users, userIdToShare);
-    const updatedSharedPosts = [...userToShare.sharedPosts, { sharedBy: id, post }];
+    const updatedSharedPosts = getExtendedArray(userToShare.sharedPosts, { sharedBy: id, post });
 
     userToShare.sharedPosts = updatedSharedPosts;
     showToast(`The post has been shared to ${userToShare.username}!`);
-    setUsers((users) => [...filterByNotId(users, userIdToShare), userToShare]);
+    setUsers((users) => getExtendedArray(filterByNotId(users, userIdToShare), userToShare));
   };
 
   return (

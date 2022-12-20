@@ -1,4 +1,5 @@
 import { LOCAL_STORAGE_KEYS } from '../../../Utils/Constants';
+import { filterByNotId, getExtendedArray } from '../../../Utils/Helpers';
 
 export const userInLocalStorage = JSON.parse(
   localStorage.getItem(LOCAL_STORAGE_KEYS.connectedUser)
@@ -12,8 +13,8 @@ export const updateUserInLocalStorage = (user) =>
 export const updateUserInAllUsersInLocalStorage = (userToUpdate) => {
   const allUsers = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.users));
 
-  const usersWithoutUserToUpdate = allUsers.filter((user) => user.id !== userToUpdate.id);
-  const updatedUsers = [...usersWithoutUserToUpdate, userToUpdate];
+  const usersWithoutUserToUpdate = filterByNotId(allUsers, userToUpdate.id);
+  const updatedUsers = getExtendedArray(usersWithoutUserToUpdate, userToUpdate);
 
   localStorage.setItem(LOCAL_STORAGE_KEYS.users, JSON.stringify(updatedUsers));
 };

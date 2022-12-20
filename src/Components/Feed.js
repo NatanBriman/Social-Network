@@ -1,5 +1,6 @@
 import { Box, Divider, Paper, Typography } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useMemo } from 'react';
 
 const Feed = ({
   paperStyle,
@@ -11,7 +12,7 @@ const Feed = ({
   isLoading,
   isVertical = true,
 }) => {
-  const isFeedEmpty = items.length === 0;
+  const isFeedEmpty = useMemo(() => items.length === 0, [items]);
 
   return (
     <Paper elevation={24} className='shadow rounded' style={paperStyle}>

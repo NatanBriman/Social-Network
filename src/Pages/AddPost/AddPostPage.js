@@ -2,11 +2,11 @@ import { Button, Grid } from '@mui/material';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import uuid from 'react-uuid';
-import Form from '../../Components/Form';
+import Form, { createFormInput } from '../../Components/Form';
 import useLocalStorage from '../../Hooks/useLocalStorage';
 import { userSelector } from '../../Redux/Features/User/UserSlice';
 import { LOCAL_STORAGE_KEYS } from '../../Utils/Constants';
-import { showToast } from '../../Utils/Helpers';
+import { getExtendedArray, showToast } from '../../Utils/Helpers';
 import AddPostPreview from './Components/AddPostPreview';
 
 export const createPost = (authorImage, authorUsername, description, postImage) => {
@@ -19,21 +19,9 @@ export const createPost = (authorImage, authorUsername, description, postImage) 
   };
 };
 
-const createFormInput = (
-  value,
-  onChange,
-  label,
-  helperText,
-  required = false,
-  fullWidth = false,
-  multiline = false
-) => {
-  return { value, onChange, label, helperText, required, fullWidth, multiline };
-};
-
 const AddPostPage = () => {
   const { username, image } = useSelector(userSelector);
-  const [posts, setPosts] = useLocalStorage(LOCAL_STORAGE_KEYS.posts, []);
+  const [_, setPosts] = useLocalStorage(LOCAL_STORAGE_KEYS.posts, []);
   const [description, setDescription] = useState('');
   const [postImage, setPostImage] = useState('');
   // TODO: Handle submit error!
@@ -65,7 +53,7 @@ const AddPostPage = () => {
   const handleAddPost = () => {
     const newPost = createPost(image, username, description, postImage);
 
-    setPosts((posts) => [...posts, newPost]);
+    setPosts((posts) => getExtendedArray(posts, newPost));
     showToast('Your post was added successfully!');
     clearValues();
   };

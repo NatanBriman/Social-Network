@@ -4,7 +4,7 @@ import Feed from '../../../../Components/Feed';
 import PostCard from '../../../../Pages/Feed/Sections/PostsFeed/PostCard';
 import { userSelector } from '../../../../Redux/Features/User/UserSlice';
 import { filterById } from '../../../../Utils/Helpers';
-import SelectedFriendContext from '../../SelectedFriendContext';
+import { SelectedFriendContext } from '../../SelectedFriendContext';
 
 const SharedPostsFeed = ({ paperStyle }) => {
   const [selectedFriend, _] = useContext(SelectedFriendContext);

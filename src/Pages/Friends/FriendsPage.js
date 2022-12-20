@@ -9,7 +9,7 @@ const FriendsPage = () => {
 
   return (
     <SelectedFriendProvider value={[selectedFriend, setSelectedFriend]}>
-      <Grid height='100%' my={2} display='flex' justifyContent='space-evenly'>
+      <Grid my={2} display='flex' justifyContent='space-evenly'>
         <SharedPostsFeed paperStyle={{ width: '40%', alignSelf: 'flex-start', height: '80vh' }} />
 
         <FriendsFeed paperStyle={{ width: '30%', alignSelf: 'flex-start' }} />

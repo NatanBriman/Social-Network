@@ -12,7 +12,9 @@ const PopUpDialog = ({ style, children, dialogContent, title }) => {
 
       <Dialog maxWidth='lg' open={isShowDialog} onClose={handleClose}>
         <DialogTitle textAlign='center'>{title}</DialogTitle>
+
         <DialogContent style={style}>{dialogContent}</DialogContent>
+
         <Box className='centered-content-row' mb={1}>
           <Button variant='outlined' onClick={handleClose} autoFocus>
             Close
