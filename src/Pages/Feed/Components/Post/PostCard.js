@@ -1,4 +1,4 @@
-import { Comment, Favorite, FavoriteBorder, Send } from '@mui/icons-material';
+import { Comment, Favorite, FavoriteBorder } from '@mui/icons-material';
 import {
   Avatar,
   Box,
@@ -11,56 +11,22 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import DropDownMenu, { createMenuItem } from '../../../../Components/DropDownMenu';
 import PopUpDialog from '../../../../Components/PopUpDialog';
 import ReadMore from '../../../../Components/ReadMore';
-import useLocalStorage from '../../../../Hooks/useLocalStorage';
 import { userActions, userSelector } from '../../../../Redux/Features/User/UserSlice';
-import { LOCAL_STORAGE_KEYS } from '../../../../Utils/Constants';
-import { showToast } from '../../../../Utils/Helpers';
+import SharePostButton from './SharePostButton';
 
 const PostCard = ({ post }) => {
   const dispatch = useDispatch();
-  const { likedPostsIds, id } = useSelector(userSelector);
-  const [users, setUsers] = useLocalStorage(LOCAL_STORAGE_KEYS.users, []);
-  const availableUsersToShare = useMemo(() => users.filter((user) => user.id !== id), [users]);
-  const usersShareMenuItems = useMemo(
-    () =>
-      availableUsersToShare.map(({ id, username, image }) =>
-        createMenuItem(
-          username,
-          <Avatar
-            className='shadow'
-            style={{ width: '2.5rem', height: '2.5rem' }}
-            alt={username}
-            src={image}
-          />,
-          () => sharePost(post, id)
-        )
-      ),
-    [availableUsersToShare]
-  );
-
-  const [shareMenuAnchorElement, setShareMenuAnchorElement] = useState(null);
-  const handleOpenShareMenu = ({ currentTarget }) => setShareMenuAnchorElement(currentTarget);
-  const handleCloseShareMenu = () => setShareMenuAnchorElement(null);
+  const { likedPostsIds } = useSelector(userSelector);
 
   const toggleLikePost = (postId) => {
     const { addLikedPost, removeLikedPost } = userActions;
     const toggleLikeAction = isPostLiked ? removeLikedPost : addLikedPost;
 
     dispatch(toggleLikeAction(postId));
-  };
-
-  const sharePost = (post, userIdToShare) => {
-    const userToShare = availableUsersToShare.find((user) => user.id === userIdToShare);
-    const updatedSharedPosts = [...userToShare.sharedPosts, { sharedBy: id, post }];
-
-    userToShare.sharedPosts = updatedSharedPosts;
-    showToast(`The post has been shared to ${userToShare.username}!`);
-    setUsers((users) => [...users.filter((user) => user.id !== userIdToShare), userToShare]);
   };
 
   const isPostLiked = useMemo(() => likedPostsIds.includes(post.id), [post.id, likedPostsIds]);
@@ -70,7 +36,7 @@ const PostCard = ({ post }) => {
   );
 
   return (
-    <Card className='shadow rounded' style={{ zIndex: '1' }}>
+    <Card className='shadow rounded'>
       <CardHeader
         avatar={<Avatar className='shadow' src={post.author.image} alt={post.author.username} />}
         title={<Typography variant='h5'>{post.author.username}</Typography>}
@@ -110,16 +76,7 @@ const PostCard = ({ post }) => {
             {likeButtonIcon}
           </IconButton>
 
-          <IconButton color='primary' variant='outlined' onClick={handleOpenShareMenu}>
-            <Send />
-          </IconButton>
-
-          <DropDownMenu
-            items={usersShareMenuItems}
-            anchorElement={shareMenuAnchorElement}
-            open={Boolean(shareMenuAnchorElement)}
-            handleCloseMenu={handleCloseShareMenu}
-          />
+          <SharePostButton post={post} />
 
           <IconButton color='success' variant='outlined'>
             <Comment />

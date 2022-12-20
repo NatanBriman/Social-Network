@@ -24,11 +24,7 @@ const Friend = ({ friend }) => {
     removeFriendFromCurrentUser(friend);
     addFriendRecommendation(friend);
 
-    showToast(
-      <p>
-        <em>{friend.username}</em> is no longer your friend!
-      </p>
-    );
+    showToast(`${friend.username} is no longer your friend!`);
   };
 
   return (

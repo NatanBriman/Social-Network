@@ -23,12 +23,8 @@ const RecommendedFriend = ({ friend }) => {
   const handleAddFriend = (friend) => {
     addFriendToCurrentUser(friend);
     removeFriendRecommendation(friend);
-    console.log(friend.username);
-    showToast(
-      <p>
-        <em>{friend.username}</em> is now your friend!
-      </p>
-    );
+
+    showToast(`${friend.username} is now your friend!`);
   };
 
   return (
