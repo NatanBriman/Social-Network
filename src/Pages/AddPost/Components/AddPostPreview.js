@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { userSelector } from '../../../Redux/Features/User/UserSlice';
-import PostCard from '../../Feed/Components/Post/PostCard';
+import PostCard from '../../Feed/Sections/PostsFeed/PostCard';
 import { createPost } from '../AddPostPage';
 
 const AddPostPreview = ({ style, description, postImage }) => {

@@ -1,15 +1,15 @@
 import { useSelector } from 'react-redux';
-import Feed from '../../../Components/Feed';
-import { userSelector } from '../../../Redux/Features/User/UserSlice';
+import Feed from '../../../../Components/Feed';
+import { userSelector } from '../../../../Redux/Features/User/UserSlice';
 import Friend from './Friend';
 
-const FriendsFeed = ({ style }) => {
+const FriendsFeed = ({ paperStyle }) => {
   const { friends } = useSelector(userSelector);
 
   return (
     <Feed
-      paperStyle={style}
-      feedStyle={{ maxHeight: '70vh', minHeight: '40vh' }}
+      paperStyle={paperStyle}
+      feedStyle={{ maxHeight: '70vh' }}
       title='My Friends'
       items={friends}
       component={(friend) => <Friend friend={friend} />}

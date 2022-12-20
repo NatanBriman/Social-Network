@@ -1,9 +1,9 @@
 import { PersonRemove } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import UserCard from '../../../Components/UserCard';
-import { userActions } from '../../../Redux/Features/User/UserSlice';
-import { showToast } from '../../../Utils/Helpers';
+import UserCard from '../../../../Components/UserCard';
+import { userActions } from '../../../../Redux/Features/User/UserSlice';
+import { showToast } from '../../../../Utils/Helpers';
 
 const Friend = ({ friend }) => {
   const dispatch = useDispatch();
