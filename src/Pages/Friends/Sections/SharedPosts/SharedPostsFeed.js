@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import Feed from '../../../../Components/Feed';
 import PostCard from '../../../../Pages/Feed/Sections/PostsFeed/PostCard';
 import { userSelector } from '../../../../Redux/Features/User/UserSlice';
+import { filterById } from '../../../../Utils/Helpers';
 import SelectedFriendContext from '../../SelectedFriendContext';
 
 const SharedPostsFeed = ({ paperStyle }) => {
@@ -10,13 +11,24 @@ const SharedPostsFeed = ({ paperStyle }) => {
   const { sharedPosts } = useSelector(userSelector);
 
   const sharedPostsBySelectedFriend = useMemo(() => {
-    const sharedPostsAndIdsBySelectedFriend = sharedPosts.filter(
-      ({ sharedBy }) => sharedBy === selectedFriend?.id
+    const sharedPostsAndIdsBySelectedFriend = filterById(
+      sharedPosts,
+      selectedFriend?.id,
+      'sharedBy'
     );
+
     const sharedPostsBySelectedFriend = sharedPostsAndIdsBySelectedFriend.map(({ post }) => post);
 
     return sharedPostsBySelectedFriend;
   }, [sharedPosts, selectedFriend?.id]);
+
+  const emptyText = useMemo(
+    () =>
+      selectedFriend
+        ? `${selectedFriend?.username} didn't share any posts with you yet`
+        : 'Select a friend to view the posts they have shared with you',
+    [selectedFriend]
+  );
 
   return (
     <Feed
@@ -25,7 +37,7 @@ const SharedPostsFeed = ({ paperStyle }) => {
       title='Shared Posts'
       items={sharedPostsBySelectedFriend}
       component={(post) => <PostCard post={post} />}
-      emptyText={`${selectedFriend?.username} didn't share any posts with you yet`}
+      emptyText={emptyText}
     />
   );
 };

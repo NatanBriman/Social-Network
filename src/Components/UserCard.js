@@ -1,9 +1,17 @@
 import { Avatar, Card, CardHeader } from '@mui/material';
 import PopUpDialog from './PopUpDialog';
 
-const UserCard = ({ user, children, isRow = false, cardStyle, avatarStyle, cardClasses }) => {
+const UserCard = ({
+  user,
+  children,
+  isRow = false,
+  cardStyle,
+  avatarStyle,
+  cardClasses,
+  onClick,
+}) => {
   return (
-    <Card className={`${cardClasses} shadow rounded`} style={cardStyle}>
+    <Card onClick={onClick} className={`${cardClasses} shadow rounded`} style={cardStyle}>
       <CardHeader
         className={`${isRow ? 'max-width flex-row' : 'max-height flex-col'} evenly-spaced-content`}
         avatar={

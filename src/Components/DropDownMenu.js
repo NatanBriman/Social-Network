@@ -19,7 +19,7 @@ const DropDownMenu = ({ items, anchorElement, open, handleCloseMenu }) => {
             {icon}
 
             <Typography variant='h6' ml={1}>
-              <strong>{text}</strong>
+              {text}
             </Typography>
           </Box>
         </MenuItem>

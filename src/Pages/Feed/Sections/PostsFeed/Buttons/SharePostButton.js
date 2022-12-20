@@ -6,34 +6,35 @@ import DropDownMenu, { createMenuItem } from '../../../../../Components/DropDown
 import useLocalStorage from '../../../../../Hooks/useLocalStorage';
 import { userSelector } from '../../../../../Redux/Features/User/UserSlice';
 import { LOCAL_STORAGE_KEYS } from '../../../../../Utils/Constants';
-import { filterById, findById, showToast } from '../../../../../Utils/Helpers';
+import { filterByNotId, findById, showToast } from '../../../../../Utils/Helpers';
 
 const SharePostButton = ({ post }) => {
   const [users, setUsers] = useLocalStorage(LOCAL_STORAGE_KEYS.users, []);
-  const { id } = useSelector(userSelector);
+  const { id, friends } = useSelector(userSelector);
 
   const [shareMenuAnchorElement, setShareMenuAnchorElement] = useState(null);
   const handleOpenShareMenu = ({ currentTarget }) => setShareMenuAnchorElement(currentTarget);
   const handleCloseShareMenu = () => setShareMenuAnchorElement(null);
 
-  const availableUsersToShare = useMemo(() => users.filter((user) => user.id !== id), [users]);
-  const usersShareMenuItems = useMemo(
+  const shareMenuItems = useMemo(
     () =>
-      availableUsersToShare.map(({ id, username, image }) =>
-        createMenuItem(username, <Avatar className='shadow' alt={username} src={image} />, () =>
-          sharePost(post, id)
-        )
-      ),
-    [availableUsersToShare]
+      friends.length > 0
+        ? friends.map(({ id, username, image }) =>
+            createMenuItem(username, <Avatar className='shadow' alt={username} src={image} />, () =>
+              sharePost(post, id)
+            )
+          )
+        : [createMenuItem('Add friends in order to share the post', '', () => {})],
+    [friends]
   );
 
   const sharePost = (post, userIdToShare) => {
-    const userToShare = findById(availableUsersToShare, userIdToShare);
+    const userToShare = findById(users, userIdToShare);
     const updatedSharedPosts = [...userToShare.sharedPosts, { sharedBy: id, post }];
 
     userToShare.sharedPosts = updatedSharedPosts;
     showToast(`The post has been shared to ${userToShare.username}!`);
-    setUsers((users) => [...filterById(users, userIdToShare), userToShare]);
+    setUsers((users) => [...filterByNotId(users, userIdToShare), userToShare]);
   };
 
   return (
@@ -43,7 +44,7 @@ const SharePostButton = ({ post }) => {
       </IconButton>
 
       <DropDownMenu
-        items={usersShareMenuItems}
+        items={shareMenuItems}
         anchorElement={shareMenuAnchorElement}
         open={Boolean(shareMenuAnchorElement)}
         handleCloseMenu={handleCloseShareMenu}

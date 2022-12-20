@@ -5,7 +5,7 @@ import UserCard from '../../../../Components/UserCard';
 import { userActions } from '../../../../Redux/Features/User/UserSlice';
 import { showToast } from '../../../../Utils/Helpers';
 
-const Friend = ({ friend }) => {
+const Friend = ({ friend, className, onClick }) => {
   const dispatch = useDispatch();
 
   const removeFriendFromCurrentUser = (friend) => {
@@ -28,7 +28,7 @@ const Friend = ({ friend }) => {
   };
 
   return (
-    <UserCard user={friend} isRow>
+    <UserCard user={friend} isRow cardClasses={className} onClick={onClick}>
       <IconButton onClick={() => handleRemoveFriend(friend)}>
         <PersonRemove />
       </IconButton>
