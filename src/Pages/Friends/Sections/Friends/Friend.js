@@ -1,11 +1,11 @@
 import { PersonRemove } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import UserCard from '../../../Components/UserCard';
-import { userActions } from '../../../Redux/Features/User/UserSlice';
-import { showToast } from '../../../Utils/Helpers';
+import UserCard from '../../../../Components/UserCard';
+import { userActions } from '../../../../Redux/Features/User/UserSlice';
+import { showToast } from '../../../../Utils/Helpers';
 
-const Friend = ({ friend }) => {
+const Friend = ({ friend, onClick }) => {
   const dispatch = useDispatch();
 
   const removeFriendFromCurrentUser = (friend) => {
@@ -24,15 +24,11 @@ const Friend = ({ friend }) => {
     removeFriendFromCurrentUser(friend);
     addFriendRecommendation(friend);
 
-    showToast(
-      <p>
-        <em>{friend.username}</em> is no longer your friend!
-      </p>
-    );
+    showToast(`${friend.username} is no longer your friend!`);
   };
 
   return (
-    <UserCard user={friend} isRow>
+    <UserCard user={friend} isRow cardClasses='clickable' onClick={onClick}>
       <IconButton onClick={() => handleRemoveFriend(friend)}>
         <PersonRemove />
       </IconButton>

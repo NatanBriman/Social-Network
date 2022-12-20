@@ -4,12 +4,12 @@
   --rounded-border: 10px;
 }
 
-.MuiBox-root button {
-  text-transform: none;
+#root {
+  height: 100vh;
 }
 
-#root {
-  height: 100%;
+.MuiBox-root button {
+  text-transform: none;
 }
 
 .MuiBox-root .shadow,
@@ -69,7 +69,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column !important;
 }
 
 .evenly-spaced-content {

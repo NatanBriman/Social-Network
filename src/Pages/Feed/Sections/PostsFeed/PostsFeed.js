@@ -5,7 +5,7 @@ import { LOCAL_STORAGE_KEYS } from '../../../../Utils/Constants';
 import PostCard from './PostCard';
 
 const PostsFeed = ({ paperStyle }) => {
-  const [posts, setPosts, isLoading] = useLocalStorageFromAPI(
+  const [posts, _, isLoading] = useLocalStorageFromAPI(
     [],
     api.posts.getAllPosts,
     LOCAL_STORAGE_KEYS.posts

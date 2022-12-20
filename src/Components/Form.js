@@ -1,5 +1,17 @@
 import { Box, Divider, Paper, TextField, Typography } from '@mui/material';
 
+export const createFormInput = (
+  value,
+  onChange,
+  label,
+  helperText,
+  required = false,
+  fullWidth = false,
+  multiline = false
+) => {
+  return { value, onChange, label, helperText, required, fullWidth, multiline };
+};
+
 const Form = ({ paperStyle, title, formInputs, children }) => {
   return (
     <Paper elevation={24} className='shadow rounded' style={paperStyle}>

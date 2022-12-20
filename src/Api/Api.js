@@ -1,8 +1,9 @@
 import uuid from 'react-uuid';
 import { createPost } from '../Pages/AddPost/AddPostPage';
+import { filterByNotId } from '../Utils/Helpers';
 
 const getRecommendedFriends = (userId) => {
-  const otherUsers = USERS.filter((recommendedUser) => recommendedUser.id !== userId);
+  const otherUsers = filterByNotId(USERS, userId);
 
   const usersDTO = otherUsers.map(({ id, username, image }) => {
     return { id, username, image };
@@ -21,6 +22,7 @@ const createUser = (username, password, image) => {
     friends: [],
     likedPostsIds: [],
     joinedDate: Date.now(),
+    sharedPosts: [],
   };
 };
 
@@ -28,7 +30,7 @@ const USERS = [
   createUser(
     'Natan Briman',
     'Natan Password',
-    'https://media-exp1.licdn.com/dms/image/D4E35AQGK4ozVskWbmQ/profile-framedphoto-shrink_400_400/0/1634383529380?e=1671530400&v=beta&t=Njg5YE0g3yo3455OUIiyQ6-akjBHjPN8VPWr0g5v5go'
+    'https://media.licdn.com/dms/image/D4E35AQGK4ozVskWbmQ/profile-framedphoto-shrink_400_400/0/1634383529380?e=1672149600&v=beta&t=si3zxbYxhnwoUEcSj-TWqKbstAEUlHkJtEUfVbTrV3w'
   ),
 
   createUser(
