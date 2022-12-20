@@ -21,6 +21,7 @@ const createUser = (username, password, image) => {
     friends: [],
     likedPostsIds: [],
     joinedDate: Date.now(),
+    sharedPosts: [],
   };
 };
 

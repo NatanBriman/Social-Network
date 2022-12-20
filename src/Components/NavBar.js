@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { userActions, userSelector } from '../Redux/Features/User/UserSlice';
 import { ThemeColorContext } from '../Theme/ThemeContext';
 import { LOGIN_ROUTE } from '../Utils/Constants';
-import DropDownMenu from './DropDownMenu';
+import DropDownMenu, { createMenuItem } from './DropDownMenu';
 
 const NavBar = ({ routes }) => {
   const { username, image } = useSelector(userSelector);
@@ -22,16 +22,12 @@ const NavBar = ({ routes }) => {
   const isCurrentRoute = (route) => route === pathname;
 
   const settings = [
-    {
-      text: 'Logout',
-      icon: <Logout />,
-      action: () => {
-        const { logout } = userActions;
+    createMenuItem('Logout', <Logout />, () => {
+      const { logout } = userActions;
 
-        dispatch(logout());
-        navigate(LOGIN_ROUTE);
-      },
-    },
+      dispatch(logout());
+      navigate(LOGIN_ROUTE);
+    }),
   ];
 
   return (

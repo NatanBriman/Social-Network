@@ -1,20 +1,27 @@
-import { Menu, MenuItem, Typography } from '@mui/material';
+import { Box, Menu, MenuItem, Typography } from '@mui/material';
+
+export const createMenuItem = (text, icon, action) => {
+  return { text, icon, action };
+};
 
 const DropDownMenu = ({ items, anchorElement, open, handleCloseMenu }) => {
   return (
     <Menu anchorEl={anchorElement} keepMounted open={open} onClose={handleCloseMenu}>
       {items.map(({ text, icon, action }) => (
         <MenuItem
-          style={{ width: '7em' }}
           key={text}
           onClick={() => {
             handleCloseMenu();
             action();
           }}
         >
-          <Typography className='max-width between-spaced-content'>
-            {icon} {text}
-          </Typography>
+          <Box display='flex' alignItems='center'>
+            {icon}
+
+            <Typography variant='h6' ml={1}>
+              <strong>{text}</strong>
+            </Typography>
+          </Box>
         </MenuItem>
       ))}
     </Menu>
